@@ -44,6 +44,6 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public DateTime ModifiedDate;
 
-        public object Coordinates { get; set; }
+        //public object Coordinates { get; set; }
     }
 }
