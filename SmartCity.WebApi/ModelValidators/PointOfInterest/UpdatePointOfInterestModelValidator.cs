@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentValidation;
+﻿using FluentValidation;
 using SmartCity.WebApi.Models.PointOfInterest;
 
 namespace SmartCity.WebApi.ModelValidator.PointOfInterest

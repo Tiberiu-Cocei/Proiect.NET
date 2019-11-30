@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentValidation;
-using SmartCity.WebApi.Models.PointOfInterest;
+﻿using FluentValidation;
+using SmartCity.WebApi.Models.Person;
 
 namespace SmartCity.WebApi.ModelValidator.Person
 {

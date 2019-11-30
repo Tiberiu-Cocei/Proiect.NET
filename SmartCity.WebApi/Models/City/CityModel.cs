@@ -4,8 +4,6 @@ using SmartCity.WebApi.Models.BusStation;
 using SmartCity.WebApi.Models.PointOfInterest;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SmartCity.WebApi.Models.City
 {

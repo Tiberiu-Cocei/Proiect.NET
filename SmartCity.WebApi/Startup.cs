@@ -4,14 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using FluentValidation;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using SmartCity.Business.Person;
 using SmartCity.DataAccess;
 using SmartCity.DataAccess.Repositories.Person;
 using Swashbuckle.AspNetCore.Swagger;
+using SmartCity.WebApi.Mappers;
 
 namespace SmartCity.WebApi
 {

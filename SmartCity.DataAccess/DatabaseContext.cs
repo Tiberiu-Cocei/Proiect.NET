@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using SmartCity.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SmartCity.DataAccess
 {

@@ -1,8 +1,4 @@
-﻿using SmartCity.WebApi.Models.Coordinates;
-using SmartCity.WebApi.Models.PointOfInterest;
-using System.Collections.Generic;
-
-namespace SmartCity.WebApi.Models.Person
+﻿namespace SmartCity.WebApi.Models.Person
 {
     public class CreatePersonModel
     {

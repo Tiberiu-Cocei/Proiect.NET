@@ -6,11 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartCity.WebApi.Controllers
 {
-    public class CititesController : Controller
+    public class CititesController : ControllerBase
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }
