@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartCity.Domain.Entities
 {
-    class Person
+    public class BusStationEntity
     {
     }
 }

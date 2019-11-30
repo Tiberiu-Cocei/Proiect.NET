@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SmartCity.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SmartCity.DataAccess.Repositories.Person
 {
-    class IPersonRepository
+    public interface IPersonRepository : IBaseRepository<PersonEntity>
     {
     }
 }

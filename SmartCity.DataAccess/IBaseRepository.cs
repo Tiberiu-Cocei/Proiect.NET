@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartCity.DataAccess
 {
-    class IBaseRepository
+    public interface IBaseRepository<TEntity>
     {
+        Task<ICollection<TEntity>> Get(Guid userId);
+
+        Task<TEntity> GetById(Guid id);
+
+        Task Add(TEntity entity);
+
+        Task Update(TEntity entity);
     }
 }

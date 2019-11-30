@@ -1,13 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using FluentValidation;
+using AutoMapper;
+using FluentValidation.AspNetCore;
+using SmartCity.Business.Person;
+using SmartCity.DataAccess;
+using SmartCity.DataAccess.Repositories.Person;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SmartCity.WebApi
 {
@@ -23,7 +27,22 @@ namespace SmartCity.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+//            services.AddRazorPages();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddFluentValidation();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
+            services.AddScoped<DatabaseContext>();
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
+
+            services.AddAutoMapper(typeof(AutoMapperConfig));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,15 +60,20 @@ namespace SmartCity.WebApi
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
