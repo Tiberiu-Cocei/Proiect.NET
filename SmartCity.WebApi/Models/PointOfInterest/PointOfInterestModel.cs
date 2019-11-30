@@ -1,5 +1,5 @@
 ﻿using SmartCity.WebApi.Models.City;
-using SmartCity.WebApi.Models.Coordinetes;
+using SmartCity.WebApi.Models.Coordinates;
 using System;
 using System.Collections.Generic;
 using System.Linq;

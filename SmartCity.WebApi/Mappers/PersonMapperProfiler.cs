@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using AutoMapper;
 using SmartCity.Domain.Entities;
-using SmartCity.WebApi.Models.Person;
 using SmartCity.WebApi.Models.Coordinates;
+using SmartCity.WebApi.Models.Person;
 
 namespace SmartCity.WebApi.Mappers
 {

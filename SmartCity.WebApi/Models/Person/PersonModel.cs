@@ -1,4 +1,4 @@
-﻿using SmartCity.WebApi.Models.Coordinetes;
+﻿using SmartCity.WebApi.Models.Coordinates;
 using SmartCity.WebApi.Models.PointOfInterest;
 using System;
 using System.Collections.Generic;

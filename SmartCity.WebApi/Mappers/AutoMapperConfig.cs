@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SmartCity.WebApi.Mappers
+﻿namespace SmartCity.WebApi.Mappers
 {
-    public class AutoMapperConfig
-    {
+    public static class AutoMapperConfig
+    {        
+        /// <summary>
+        ///     Initializes the <see cref="AutoMapper" /> configurations.
+        /// </summary>
         public static void Initialize()
         {
             AutoMapper.Mapper.Reset();
