@@ -1,0 +1,18 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using FluentValidation;
+using SmartCity.WebApi.Models.PointOfInterest;
+
+namespace SmartCity.WebApi.ModelValidator.Person
+{
+    public class CreatePersonModelValidation : AbstractValidator<CreatePersonModel>
+    {
+        public CreatePersonModelValidation()
+        {
+            RuleFor(x => x.FirstName).NotEmpty().Length(3, 50);
+            RuleFor(x => x.LastName).NotEmpty().Length(3, 50);
+            RuleFor(x => x.Username).NotEmpty().Length(7, 50);
+            RuleFor(x => x.Password).NotEmpty();
+        }
+    }
+}

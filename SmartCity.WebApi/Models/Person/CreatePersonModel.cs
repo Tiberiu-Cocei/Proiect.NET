@@ -10,9 +10,7 @@ namespace SmartCity.WebApi.Models.Person
 
         public string LastName { get; set; }
 
-        public CoordinatesModel Coordinates { get; set; }
-
-        public List<PointOfInterestModel> PointOfInterestModels { get; set; }
+        public string Username { get; set; }
 
         public string Password { get; set; }
     }

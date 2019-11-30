@@ -20,18 +20,18 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public string LastName;
 
-        /*[BsonElement("coor")]
+        /*[BsonElement("Coordinates")]
         [BsonRequired]
-        public CoordinatesEntity coordinates;*/
+        public CoordinatesEntity? Coordinates;*/
 
         [BsonElement("PointOfInterestEntities")]
         [BsonRequired]
-        public ICollection<PointOfInteresEntity> pointOfInteresEntities;
-
+        public ICollection<PointOfInterestEntity> PointOfInterestEntities;
+        
         [BsonElement("Username")]
         [BsonRequired]
         public string Username;
-
+        
         [BsonElement("Password")]
         [BsonRequired]
         public string Password;

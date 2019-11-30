@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SmartCity.Domain.Entities
 {
-    public class PointOfInteresEntity : BaseEntity
+    public class PointOfInterestEntity : BaseEntity
     {
-        public PointOfInteresEntity()
+        public PointOfInterestEntity()
             :base()
         {
 
@@ -29,8 +29,9 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public bool IsPrivate { get; set; }
 
-        /*
-        City City;*/
+        [BsonElement("City")]
+        [BsonRequired]
+        public CityEntity City { get; set; }
 
         [BsonElement("CreationDate")]
         [BsonRequired]

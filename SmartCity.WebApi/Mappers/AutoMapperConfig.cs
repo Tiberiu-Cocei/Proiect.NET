@@ -7,5 +7,14 @@ namespace SmartCity.WebApi.Mappers
 {
     public class AutoMapperConfig
     {
+        public static void Initialize()
+        {
+            AutoMapper.Mapper.Reset();
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<PersonMapperProfiler>();
+                cfg.AddProfile<PointOfInterestMapperProfiler>();
+            });
+        }
     }
 }
