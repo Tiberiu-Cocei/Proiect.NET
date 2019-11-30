@@ -9,33 +9,37 @@ namespace SmartCity.DataAccess.Repositories.Person
 {
     public class PersonRepository : IPersonRepository
     {
-        private readonly IMongoCollection<PersonEntity> persons;
+        private readonly IMongoCollection<PersonEntity> _persons;
 
         public PersonRepository(DatabaseContext databaseContext)
         {
             Guard.ArgumentNotNull(databaseContext, nameof(databaseContext));
 
-            persons = databaseContext.Persons;
+            _persons = databaseContext.Persons;
         }
 
-        public Task Add(PersonEntity entity)
+        public async Task Add(PersonEntity entity)
         {
-            throw new NotImplementedException();
+            await _persons.InsertOneAsync(entity).ConfigureAwait(false);
         }
 
-        public Task<ICollection<PersonEntity>> Get(Guid userId)
+        public async Task<ICollection<PersonEntity>> Get(Guid userId)
         {
-            throw new NotImplementedException();
+            var persons = await _persons.FindAsync(x => x.Id == userId).ConfigureAwait(false);
+
+            return persons.ToList();
         }
 
-        public Task<PersonEntity> GetById(Guid id)
+        public async Task<PersonEntity> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var person = await _persons.FindAsync(x => x.Id == id).ConfigureAwait(false);
+
+            return person.FirstOrDefault();
         }
 
-        public Task Update(PersonEntity entity)
+        public async Task Update(PersonEntity entity)
         {
-            throw new NotImplementedException();
+            await _persons.FindOneAndReplaceAsync(x => x.Id == entity.Id, entity).ConfigureAwait(false);
         }
     }
 }
