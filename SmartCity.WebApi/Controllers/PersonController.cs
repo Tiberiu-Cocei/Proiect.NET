@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartCity.Business.Person;
 using SmartCity.Domain.Entities;
 using SmartCity.WebApi.Models.Person;
+using SmartCity.WebApi.Models.User;
 using Vanguard;
 
 namespace SmartCity.WebApi.Controllers
@@ -44,10 +45,42 @@ namespace SmartCity.WebApi.Controllers
             return Ok(_mapper.Map<PersonModel>(person));
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> GetPersonByCredentials([FromBody] UserModel user)
+        {
+            if(user == null)
+            {
+                return BadRequest();
+            }
+
+            if (string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
+            {
+                return BadRequest();
+            }
+
+            var person = await _persons.GetByCredentials(user.Username, user.Password).ConfigureAwait(false);
+            if(person == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<PersonModel>(person));
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPerson([FromBody] CreatePersonModel user)
         {
             if (user == null)
+            {
+                return BadRequest();
+            }
+
+            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email))
+            {
+                return BadRequest();
+            }
+
+            if (string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
             {
                 return BadRequest();
             }

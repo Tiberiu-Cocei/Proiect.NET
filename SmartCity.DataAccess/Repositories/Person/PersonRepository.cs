@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SmartCity.Domain.Entities;
 using Vanguard;
@@ -35,6 +36,19 @@ namespace SmartCity.DataAccess.Repositories.Person
             var person = await _persons.FindAsync(x => x.Id == id).ConfigureAwait(false);
 
             return person.FirstOrDefault();
+        }
+
+        public async Task<PersonEntity> GetPersonByCredentials(string username, string password)
+        {
+            var person = await _persons.FindAsync(x => x.Username == username).ConfigureAwait(false);
+            var result = person.FirstOrDefault();
+
+            if(result == null || result.Password != password)
+            {
+                return null;
+            }
+
+            return result;
         }
 
         public async Task Update(PersonEntity entity)

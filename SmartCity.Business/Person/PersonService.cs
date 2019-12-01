@@ -29,6 +29,14 @@ namespace SmartCity.Business.Person
             return await _repository.Get(userId).ConfigureAwait(false);
         }
 
+        public async Task<PersonEntity> GetByCredentials(string username, string password)
+        {
+            Guard.ArgumentNotNull(username, nameof(username));
+            Guard.ArgumentNotNull(password, nameof(password));
+
+            return await _repository.GetPersonByCredentials(username, password).ConfigureAwait(false);
+        }
+
         public async Task<PersonEntity> GetByIdAsync(Guid id)
         {
             return await _repository.GetById(id).ConfigureAwait(false);

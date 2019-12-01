@@ -11,6 +11,8 @@ namespace SmartCity.Business.Person
 
         Task<PersonEntity> GetByIdAsync(Guid id);
 
+        Task<PersonEntity> GetByCredentials(string username, string password);
+
         Task AddAsync(PersonEntity entity);
 
         Task UpdateAsync(PersonEntity entity);

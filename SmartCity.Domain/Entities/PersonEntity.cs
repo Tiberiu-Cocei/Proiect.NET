@@ -13,38 +13,38 @@ namespace SmartCity.Domain.Entities
         
         [BsonElement("FirstName")]
         [BsonRequired]
-        public string FirstName;
+        public string FirstName { get; set; }
 
         [BsonElement("LastName")]
         [BsonRequired]
-        public string LastName;
+        public string LastName { get; set; }
 
         [BsonElement("Email")]
         [BsonRequired]
-        public string Email;
+        public string Email { get; set; }
 
         [BsonElement("Coordinates")]
         [BsonRequired]
-        public CoordinatesEntity Coordinates;
+        public CoordinatesEntity Coordinates { get; set; }
 
         [BsonElement("PointOfInterestEntities")]
         [BsonRequired]
-        public ICollection<PointOfInterestEntity> PointOfInterestEntities;
-        
+        public ICollection<PointOfInterestEntity> PointOfInterestEntities { get; set; }
+
         [BsonElement("Username")]
         [BsonRequired]
-        public string Username;
-        
+        public string Username { get; set; }
+
         [BsonElement("Password")]
         [BsonRequired]
-        public string Password;
+        public string Password { get; set; }
 
         [BsonElement("CreationDate")]
         [BsonRequired]
-        public DateTime CreationDate;
+        public DateTime CreationDate { get; set; }
 
         [BsonElement("ModifiedDate")]
         [BsonRequired]
-        public DateTime ModifiedDate;
+        public DateTime ModifiedDate { get; set; }
     }
 }
