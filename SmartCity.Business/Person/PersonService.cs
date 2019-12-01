@@ -9,32 +9,40 @@ namespace SmartCity.Business.Person
 {
     public class PersonService : IPersonService
     {
-        private readonly IPersonRepository Repository;
+        private readonly IPersonRepository _repository;
 
         public PersonService(IPersonRepository repository)
         {
             Guard.ArgumentNotNull(repository, nameof(repository));
 
-            Repository = repository;
+            _repository = repository;
         }
-        public Task AddAsync(PersonEntity entity)
+        public async Task AddAsync(PersonEntity entity)
         {
-            throw new NotImplementedException();
+            Guard.ArgumentNotNull(entity, nameof(entity));
+
+            await _repository.Add(entity).ConfigureAwait(false);
         }
 
-        public Task<ICollection<PersonEntity>> GetAsync(Guid userId)
+        public async Task<ICollection<PersonEntity>> GetAsync(Guid userId)
         {
-            throw new NotImplementedException();
+            return await _repository.Get(userId).ConfigureAwait(false);
         }
 
-        public Task<PersonEntity> GetByIdAsync(Guid id)
+        public async Task<PersonEntity> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _repository.GetById(id).ConfigureAwait(false);
         }
 
-        public Task UpdateAsync(PersonEntity entity)
+        public async Task UpdateAsync(PersonEntity entity)
         {
-            throw new NotImplementedException();
+            
+            Guard.ArgumentNotNull(entity, nameof(entity));
+            var insertedPerson = await _repository.GetById(entity.Id).ConfigureAwait(false);
+            if( insertedPerson != null)
+            {
+                await _repository.Update(entity).ConfigureAwait(false);
+            }
         }
     }
 }
