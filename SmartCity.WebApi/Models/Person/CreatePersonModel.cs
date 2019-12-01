@@ -1,10 +1,14 @@
-﻿namespace SmartCity.WebApi.Models.Person
+﻿using System;
+
+namespace SmartCity.WebApi.Models.Person
 {
     public class CreatePersonModel
     {
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public string Email { get; set; }
 
         public string Username { get; set; }
 

@@ -11,6 +11,7 @@ using SmartCity.DataAccess;
 using SmartCity.DataAccess.Repositories.Person;
 using Swashbuckle.AspNetCore.Swagger;
 using SmartCity.WebApi.Mappers;
+using Microsoft.OpenApi.Models;
 
 namespace SmartCity.WebApi
 {
@@ -26,14 +27,14 @@ namespace SmartCity.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-//            services.AddRazorPages();
+            //services.AddRazorPages();
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
 
             services.AddScoped<DatabaseContext>();
@@ -59,9 +60,7 @@ namespace SmartCity.WebApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseSwagger();
-
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
@@ -69,7 +68,6 @@ namespace SmartCity.WebApi
             });
 
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

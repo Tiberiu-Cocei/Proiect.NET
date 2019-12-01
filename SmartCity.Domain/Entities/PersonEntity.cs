@@ -19,6 +19,10 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public string LastName;
 
+        [BsonElement("Email")]
+        [BsonRequired]
+        public string Email;
+
         [BsonElement("Coordinates")]
         [BsonRequired]
         public CoordinatesEntity Coordinates;
@@ -42,7 +46,5 @@ namespace SmartCity.Domain.Entities
         [BsonElement("ModifiedDate")]
         [BsonRequired]
         public DateTime ModifiedDate;
-
-        //public object Coordinates { get; set; }
     }
 }

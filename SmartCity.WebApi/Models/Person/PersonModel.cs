@@ -13,6 +13,8 @@ namespace SmartCity.WebApi.Models.Person
 
         public string LastName { get; set; }
 
+        public string Email { get; set; }
+
         public CoordinatesModel Coordinates { get; set; }
 
         public List<PointOfInterestModel> PointOfInterestModels { get; set; }

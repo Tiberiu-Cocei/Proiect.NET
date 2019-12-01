@@ -25,6 +25,7 @@ namespace SmartCity.WebApi.Mappers
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
                 .ForMember(dest => dest.FirstName, map => map.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, map => map.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.Email, map => map.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
                 .ForMember(dest => dest.PointOfInterestModels, map => map.MapFrom((src, dest, destMember, context) =>
                     context.Mapper.Map<ICollection<PointOfInterestEntity>>(src.PointOfInterestEntities)))
