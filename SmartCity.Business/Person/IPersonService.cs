@@ -13,6 +13,10 @@ namespace SmartCity.Business.Person
 
         Task<PersonEntity> GetByCredentials(string username, string password);
 
+        Task<PersonEntity> GetByUsername(string username);
+
+        Task<PersonEntity> GetByEmail(string email);
+
         Task AddAsync(PersonEntity entity);
 
         Task UpdateAsync(PersonEntity entity);

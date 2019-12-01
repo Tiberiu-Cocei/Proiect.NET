@@ -39,6 +39,7 @@ namespace SmartCity.WebApi.Mappers
                 .ForMember(dest => dest.Id, map => map.MapFrom(_ => Guid.NewGuid()))
                 .ForMember(dest => dest.FirstName, map => map.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, map => map.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.Email, map => map.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(_ => new CoordinatesEntity()))
                 .ForMember(dest => dest.PointOfInterestEntities, map => map.MapFrom(_ => new List<PointOfInterestEntity>()))
                 .ForMember(dest => dest.Username, map => map.MapFrom(src => src.Username))

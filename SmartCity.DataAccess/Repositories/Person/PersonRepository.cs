@@ -51,6 +51,20 @@ namespace SmartCity.DataAccess.Repositories.Person
             return result;
         }
 
+        public async Task<PersonEntity> GetByEmail(string email)
+        {
+            var person = await _persons.FindAsync(x => x.Email == email).ConfigureAwait(false);
+
+            return person.FirstOrDefault();
+        }
+
+        public async Task<PersonEntity> GetByUsername(string username)
+        {
+            var person = await _persons.FindAsync(x => x.Username == username).ConfigureAwait(false);
+
+            return person.FirstOrDefault();
+        }
+
         public async Task Update(PersonEntity entity)
         {
             await _persons.FindOneAndReplaceAsync(x => x.Id == entity.Id, entity).ConfigureAwait(false);

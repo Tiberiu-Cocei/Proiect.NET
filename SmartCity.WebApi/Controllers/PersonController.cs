@@ -75,17 +75,46 @@ namespace SmartCity.WebApi.Controllers
                 return BadRequest();
             }
 
-            if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.Email))
+            if (string.IsNullOrEmpty(user.LastName))
             {
                 return BadRequest();
             }
 
-            if (string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
+            if (string.IsNullOrEmpty(user.Email))
+            {
+                return BadRequest();
+            }
+
+            if (string.IsNullOrEmpty(user.FirstName))
+            {
+                return BadRequest();
+            }
+
+            if (string.IsNullOrEmpty(user.Password))
+            {
+                return BadRequest();
+            }
+
+            if (string.IsNullOrEmpty(user.Username))
             {
                 return BadRequest();
             }
 
             var userEntity = _mapper.Map<PersonEntity>(user);
+
+            var res = await _persons.GetByUsername(user.Username).ConfigureAwait(false);
+
+            if(res != null)
+            {
+                return BadRequest();
+            }
+
+            var ress = await _persons.GetByEmail(user.Email).ConfigureAwait(false);
+
+            if(ress != null)
+            {
+                return BadRequest();
+            }
 
             await _persons.AddAsync(userEntity).ConfigureAwait(false);
 
