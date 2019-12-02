@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{006E2D6C-F94E-4235-B444-C086CA863553}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Tests", "SmartCity.Tests\SmartCity.Tests.csproj", "{E345F659-2030-4DC1-A378-875A71765220}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Tests", "SmartCity.Tests\SmartCity.Tests.csproj", "{E345F659-2030-4DC1-A378-875A71765220}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6DDE2544-7278-456D-9DF3-5800318ADFA2} = {6DDE2544-7278-456D-9DF3-5800318ADFA2}
 		{203399BD-D6EA-49AB-A45A-2543DF5F65BA} = {203399BD-D6EA-49AB-A45A-2543DF5F65BA}
@@ -19,15 +19,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Tests", "SmartCit
 		{1F799EF9-B600-4686-B00A-AAFA3443324D} = {1F799EF9-B600-4686-B00A-AAFA3443324D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Domain", "SmartCity.Domain\SmartCity.Domain.csproj", "{097C9AE0-B5FF-4230-B03D-45872ABA93DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Domain", "SmartCity.Domain\SmartCity.Domain.csproj", "{097C9AE0-B5FF-4230-B03D-45872ABA93DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Business", "SmartCity.Business\SmartCity.Business.csproj", "{6DDE2544-7278-456D-9DF3-5800318ADFA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Business", "SmartCity.Business\SmartCity.Business.csproj", "{6DDE2544-7278-456D-9DF3-5800318ADFA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{29EFDFE5-21F8-4502-B0C2-2C92758621E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.DataAccess", "SmartCity.DataAccess\SmartCity.DataAccess.csproj", "{203399BD-D6EA-49AB-A45A-2543DF5F65BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.DataAccess", "SmartCity.DataAccess\SmartCity.DataAccess.csproj", "{203399BD-D6EA-49AB-A45A-2543DF5F65BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.WebApi", "SmartCity.WebApi\SmartCity.WebApi.csproj", "{1F799EF9-B600-4686-B00A-AAFA3443324D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.WebApi", "SmartCity.WebApi\SmartCity.WebApi.csproj", "{1F799EF9-B600-4686-B00A-AAFA3443324D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
