@@ -37,8 +37,8 @@ namespace SmartCity.WebApi
                 {
                     builder.WithOrigins("http://localhost:3000",
                                         "http://www.contoso.com")
-                    .AllowAnyHeader()
-                                .AllowAnyMethod();
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
                 });
             });
 
