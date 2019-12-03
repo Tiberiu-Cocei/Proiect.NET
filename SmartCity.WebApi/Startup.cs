@@ -1,17 +1,23 @@
+using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
-using FluentValidation.AspNetCore;
+using Microsoft.OpenApi.Models;
 using SmartCity.Business.Person;
 using SmartCity.DataAccess;
 using SmartCity.DataAccess.Repositories.Person;
-using Swashbuckle.AspNetCore.Swagger;
 using SmartCity.WebApi.Mappers;
-using Microsoft.OpenApi.Models;
+using SmartCity.WebApi.Models.Person;
+using SmartCity.WebApi.Models.PointOfInterest;
+using SmartCity.WebApi.Models.User;
+using SmartCity.WebApi.ModelValidators.Person;
+using SmartCity.WebApi.ModelValidators.PointOfInterest;
+using SmartCity.WebApi.ModelValidators.User;
 
 namespace SmartCity.WebApi
 {
@@ -42,7 +48,15 @@ namespace SmartCity.WebApi
                 });
             });
 
+            services.AddTransient<IValidator<CreatePersonModel>, CreatePersonModelValidation>();
+            services.AddTransient<IValidator<UpdatePersonModel>, UpdatePersonModelValidator>();
+            services.AddTransient<IValidator<PersonModel>, PersonModelValidator>();
 
+            services.AddTransient<IValidator<CreatePointOfInterestModel>, CreatePointOfInterestModelValidator>();
+            services.AddTransient<IValidator<UpdatePointOfInterestModel>, UpdatePointOfInterestModelValidator>();
+            services.AddTransient<IValidator<PointOfInterestModel>, PointOfInterestModelValidator>();
+
+            services.AddTransient<IValidator<UserModel>, UserModelValidatior>();
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)

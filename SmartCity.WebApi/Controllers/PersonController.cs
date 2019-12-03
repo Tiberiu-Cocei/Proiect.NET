@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartCity.Business.Person;
 using SmartCity.Domain.Entities;
 using SmartCity.WebApi.Models.Person;
 using SmartCity.WebApi.Models.User;
+using System;
+using System.Threading.Tasks;
 using Vanguard;
 
 namespace SmartCity.WebApi.Controllers
@@ -48,16 +47,6 @@ namespace SmartCity.WebApi.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> GetPersonByCredentials([FromBody] UserModel user)
         {
-            if(user == null)
-            {
-                return BadRequest();
-            }
-
-            if (string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Username))
-            {
-                return BadRequest();
-            }
-
             var person = await _persons.GetByCredentials(user.Username, user.Password).ConfigureAwait(false);
             if(person == null)
             {
@@ -70,35 +59,6 @@ namespace SmartCity.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPerson([FromBody] CreatePersonModel user)
         {
-            if (user == null)
-            {
-                return BadRequest();
-            }
-
-            if (string.IsNullOrEmpty(user.LastName))
-            {
-                return BadRequest();
-            }
-
-            if (string.IsNullOrEmpty(user.Email))
-            {
-                return BadRequest();
-            }
-
-            if (string.IsNullOrEmpty(user.FirstName))
-            {
-                return BadRequest();
-            }
-
-            if (string.IsNullOrEmpty(user.Password))
-            {
-                return BadRequest();
-            }
-
-            if (string.IsNullOrEmpty(user.Username))
-            {
-                return BadRequest();
-            }
 
             var userEntity = _mapper.Map<PersonEntity>(user);
 
@@ -126,26 +86,6 @@ namespace SmartCity.WebApi.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdatePerson([FromRoute] Guid id, [FromBody] UpdatePersonModel updatePerson)
         {
-            if (updatePerson == null)
-            {
-                return BadRequest();
-            }
-
-            if (updatePerson.Id != id)
-            {
-                return BadRequest();
-            }
-
-            if(string.IsNullOrEmpty(updatePerson.FirstName) || string.IsNullOrEmpty(updatePerson.LastName) || string.IsNullOrEmpty(updatePerson.Email))
-            {
-                return BadRequest();
-            }
-
-            if(string.IsNullOrEmpty(updatePerson.Password) || string.IsNullOrEmpty(updatePerson.Username))
-            {
-                return BadRequest();
-            }
-
             var person = await _persons.GetByIdAsync(id).ConfigureAwait(false);
             if(person == null)
             {

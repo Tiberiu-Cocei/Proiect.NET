@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using SmartCity.WebApi.Models.Person;
 
-namespace SmartCity.WebApi.ModelValidator.Person
+namespace SmartCity.WebApi.ModelValidators.Person
 {
     public class CreatePersonModelValidation : AbstractValidator<CreatePersonModel>
     {

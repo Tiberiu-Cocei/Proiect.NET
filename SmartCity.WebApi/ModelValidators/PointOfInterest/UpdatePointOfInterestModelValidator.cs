@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using SmartCity.WebApi.Models.PointOfInterest;
 
-namespace SmartCity.WebApi.ModelValidator.PointOfInterest
+namespace SmartCity.WebApi.ModelValidators.PointOfInterest
 {
     public class UpdatePointOfInterestModelValidator : AbstractValidator<UpdatePointOfInterestModel>
     {
