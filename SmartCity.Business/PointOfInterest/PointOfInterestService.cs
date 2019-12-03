@@ -49,8 +49,8 @@ namespace SmartCity.Business.PointOfInterest
         {
             Guard.ArgumentNotNull(pointOfInterest, nameof(pointOfInterest));
 
-            var insertedQuiz = await _repository.GetById(pointOfInterest.Id).ConfigureAwait(false);
-            if (insertedQuiz != null)
+            var insertedPointOfInterest = await _repository.GetById(pointOfInterest.Id).ConfigureAwait(false);
+            if (insertedPointOfInterest != null)
             {
                 await _repository.Update(pointOfInterest).ConfigureAwait(false);
             }
