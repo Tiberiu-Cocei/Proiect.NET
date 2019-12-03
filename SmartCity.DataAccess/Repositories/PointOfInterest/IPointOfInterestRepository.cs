@@ -9,5 +9,6 @@ namespace SmartCity.DataAccess.Repositories.PointOfInterest
     public interface IPointOfInterestRepository : IBaseRepository<PointOfInterestEntity>
     {
         public Task<PointOfInterestEntity> GetByCoordonates(CoordinatesEntity coordinate);
+        Task Delete(Guid id);
     }
 }

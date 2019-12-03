@@ -8,8 +8,14 @@ namespace SmartCity.Business.PointOfInterest
 {
     public interface IPointOfInterestService
     {
-        Task<ICollection<PointOfInterestEntity>> GetAsync();
+        Task AddAsync(PointOfInterestEntity entity);
 
-        Task<PointOfInterestEntity> GetByIdAsync(Guid id); 
+        Task<ICollection<PointOfInterestEntity>> GetAsync(Guid userId);
+
+        Task<PointOfInterestEntity> GetByIdAsync(Guid id);
+
+        Task DeleteAsync(Guid id);
+
+        Task UpdateAsync(PointOfInterestEntity pointOfInterest);
     }
 }

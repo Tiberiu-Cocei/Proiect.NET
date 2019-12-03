@@ -48,5 +48,10 @@ namespace SmartCity.DataAccess.Repositories.PointOfInterest
         {
             await _pointOfInterests.FindOneAndReplaceAsync(x => x.Id == entity.Id, entity).ConfigureAwait(false);
         }
+
+        public async Task Delete(Guid id)
+        {
+            await _pointOfInterests.DeleteOneAsync(x => x.Id == id).ConfigureAwait(false);
+        }
     }
 }
