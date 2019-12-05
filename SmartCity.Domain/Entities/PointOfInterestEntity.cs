@@ -5,11 +5,7 @@ namespace SmartCity.Domain.Entities
 {
     public class PointOfInterestEntity : BaseEntity
     {
-        public PointOfInterestEntity()
-            :base()
-        {
-
-        }
+        public PointOfInterestEntity() : base() {}
 
         [BsonElement("Coordinates")]
         [BsonRequired]

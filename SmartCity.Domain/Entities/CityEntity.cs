@@ -7,10 +7,7 @@ namespace SmartCity.Domain.Entities
 {
     public class CityEntity : BaseEntity
     {
-        public CityEntity() : base()
-        {
-
-        }
+        public CityEntity() : base() {}
 
         [BsonElement("Name")]
         [BsonRequired]
@@ -18,19 +15,19 @@ namespace SmartCity.Domain.Entities
 
         [BsonElement("Buses")]
         [BsonRequired]
-        public List<BusEntity> Buses { get; set; }
+        public ICollection<BusEntity> Buses { get; set; }
 
         [BsonElement("BusStations")]
         [BsonRequired]
-        public List<BusStationEntity> BusStations { get; set; }
+        public ICollection<BusStationEntity> BusStations { get; set; }
 
         [BsonElement("BusRoutes")]
         [BsonRequired]
-        public List<BusRouteEntity> BusRoutes { get; set; }
+        public ICollection<BusRouteEntity> BusRoutes { get; set; }
 
         [BsonElement("PointOfInterest")]
         [BsonRequired]
-        public List<PointOfInterestEntity> PointsOfInterests { get; set; }
+        public ICollection<PointOfInterestEntity> PointsOfInterests { get; set; }
 
         [BsonElement("CreationDate")]
         [BsonRequired]

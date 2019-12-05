@@ -6,10 +6,7 @@ namespace SmartCity.Domain.Entities
 {
     public class PersonEntity : BaseEntity
     {
-        public PersonEntity() : base()
-        {
-
-        }
+        public PersonEntity() : base() {}
         
         [BsonElement("FirstName")]
         [BsonRequired]

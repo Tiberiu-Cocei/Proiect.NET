@@ -1,11 +1,15 @@
-﻿using System;
+﻿using SmartCity.WebApi.Models.BusStation;
+using SmartCity.WebApi.Models.City;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SmartCity.WebApi.Models.BusRoute
 {
     public class CreateBusRouteModel
     {
+        public string Name { get; set; }
+
+        public List<BusStationModel> BusStations { get; set; }
+
+        public CityModel City { get; set; }
     }
 }
