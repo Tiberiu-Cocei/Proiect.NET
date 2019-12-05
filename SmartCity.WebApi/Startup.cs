@@ -9,8 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SmartCity.Business.Person;
+using SmartCity.Business.PointOfInterest;
 using SmartCity.DataAccess;
 using SmartCity.DataAccess.Repositories.Person;
+using SmartCity.DataAccess.Repositories.PointOfInterest;
 using SmartCity.WebApi.Mappers;
 using SmartCity.WebApi.Models.Person;
 using SmartCity.WebApi.Models.PointOfInterest;
@@ -69,7 +71,9 @@ namespace SmartCity.WebApi
 
             services.AddScoped<DatabaseContext>();
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPointOfInterestService, PointOfInterestService>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPointOfInterestRepository, PointOfInterestRepository>();
 
             services.AddAutoMapper(typeof(AutoMapperConfig));
 

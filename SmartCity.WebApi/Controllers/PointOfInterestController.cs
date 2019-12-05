@@ -44,7 +44,7 @@ namespace SmartCity.WebApi.Controllers
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
         public async Task<IActionResult> GetPointOfInterestByCity([FromBody] CityEntity city)
         {
-            var poitOfInterest = 
+            var poitOfInterest =
         }*/
 
         [HttpPost]
