@@ -26,9 +26,9 @@ namespace SmartCity.Business.PointOfInterest
             await _repository.Add(entity).ConfigureAwait(false);
         }
 
-        public async Task<ICollection<PointOfInterestEntity>> GetAsync(Guid userId)
+        public async Task<ICollection<PointOfInterestEntity>> GetAsync()
         {
-            return await _repository.Get(userId).ConfigureAwait(false);
+            return await _repository.Get().ConfigureAwait(false);
         }
 
         public async Task<PointOfInterestEntity> GetByIdAsync(Guid id)

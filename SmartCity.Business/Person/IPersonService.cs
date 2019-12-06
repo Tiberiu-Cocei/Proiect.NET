@@ -7,7 +7,7 @@ namespace SmartCity.Business.Person
 {
     public interface IPersonService
     {
-        Task<ICollection<PersonEntity>> GetAsync(Guid userId);
+        Task<ICollection<PersonEntity>> GetAsync();
 
         Task<PersonEntity> GetByIdAsync(Guid id);
 

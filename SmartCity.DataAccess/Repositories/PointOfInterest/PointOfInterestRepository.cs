@@ -23,9 +23,9 @@ namespace SmartCity.DataAccess.Repositories.PointOfInterest
             await _pointOfInterests.InsertOneAsync(entity).ConfigureAwait(false);
         }
 
-        public async Task<ICollection<PointOfInterestEntity>> Get(Guid pointOfInterestId)
+        public async Task<ICollection<PointOfInterestEntity>> Get()
         {
-            var pointOfInterests = await _pointOfInterests.FindAsync(x => x.Id == pointOfInterestId).ConfigureAwait(false);
+            var pointOfInterests = await _pointOfInterests.FindAsync(x => true).ConfigureAwait(false);
 
             return pointOfInterests.ToList();
         }

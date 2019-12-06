@@ -7,7 +7,7 @@ namespace SmartCity.Domain.Entities
 {
     public class BusStationEntity : BaseEntity
     {
-        public PointOfInterestEntity() : base() {}
+        public BusStationEntity() : base() {}
 
         [BsonElement("Name")]
         [BsonRequired]

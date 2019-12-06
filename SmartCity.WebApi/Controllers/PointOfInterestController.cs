@@ -74,5 +74,12 @@ namespace SmartCity.WebApi.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeletePointOfInterest([FromRoute] Guid id)
+        {
+            await _poitOfInterestService.DeleteAsync(id).ConfigureAwait(false);
+            return NoContent();
+        }
     }
 }

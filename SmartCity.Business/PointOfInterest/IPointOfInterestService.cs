@@ -10,7 +10,7 @@ namespace SmartCity.Business.PointOfInterest
     {
         Task AddAsync(PointOfInterestEntity entity);
 
-        Task<ICollection<PointOfInterestEntity>> GetAsync(Guid userId);
+        Task<ICollection<PointOfInterestEntity>> GetAsync();
 
         Task<PointOfInterestEntity> GetByIdAsync(Guid id);
 

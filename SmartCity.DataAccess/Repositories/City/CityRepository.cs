@@ -24,16 +24,24 @@ namespace SmartCity.DataAccess.Repositories.City
             await _cities.InsertOneAsync(entity).ConfigureAwait(false);
         }
 
-        public async Task<ICollection<CityEntity>> Get(Guid userId)
+        public async Task<ICollection<CityEntity>> Get()
         {
-            var cities = await _cities.FindAsync(x => x.Id == userId).ConfigureAwait(false);
+            var cities = await _cities.FindAsync(x => true).ConfigureAwait(false);
 
             return cities.ToList();
         }
 
+
         public async Task<CityEntity> GetById(Guid id)
         {
             var city = await _cities.FindAsync(x => x.Id == id).ConfigureAwait(false);
+
+            return city.FirstOrDefault();
+        }
+
+        public async Task<CityEntity> GetByName(string name)
+        {
+            var city = await _cities.FindAsync(x => x.Name == name).ConfigureAwait(false);
 
             return city.FirstOrDefault();
         }

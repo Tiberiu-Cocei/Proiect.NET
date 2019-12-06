@@ -24,9 +24,9 @@ namespace SmartCity.DataAccess.Repositories.Person
             await _persons.InsertOneAsync(entity).ConfigureAwait(false);
         }
 
-        public async Task<ICollection<PersonEntity>> Get(Guid userId)
+        public async Task<ICollection<PersonEntity>> Get()
         {
-            var persons = await _persons.FindAsync(x => x.Id == userId).ConfigureAwait(false);
+            var persons = await _persons.FindAsync(x => true).ConfigureAwait(false);
 
             return persons.ToList();
         }
