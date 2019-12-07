@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SmartCity.WebApi.Models.BusRoute;
 using SmartCity.WebApi.Models.Person;
 using SmartCity.WebApi.ModelValidators.BusStation;
 using SmartCity.WebApi.ModelValidators.City;
