@@ -2,7 +2,6 @@
 using AutoMapper;
 using SmartCity.Domain.Entities;
 using SmartCity.WebApi.Models.PointOfInterest;
-using SmartCity.WebApi.Models.Coordinates;
 
 namespace SmartCity.WebApi.Mappers
 {
@@ -10,16 +9,6 @@ namespace SmartCity.WebApi.Mappers
     {
         public PointOfInterestMapperProfiler()
         {
-            CreateMap<CoordinatesModel, CoordinatesEntity>()
-                .ForMember(dest => dest.Longitude, map => map.MapFrom(src => src.Longitude))
-                .ForMember(dest => dest.Latitude, map => map.MapFrom(src => src.Latitude))
-                .ForAllOtherMembers(x => x.Ignore());
-
-            CreateMap<CoordinatesEntity, CoordinatesModel>()
-                .ForMember(dest => dest.Longitude, map => map.MapFrom(src => src.Longitude))
-                .ForMember(dest => dest.Latitude, map => map.MapFrom(src => src.Latitude))
-                .ForAllOtherMembers(x => x.Ignore());
-
             CreateMap<PointOfInterestEntity, PointOfInterestModel>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))

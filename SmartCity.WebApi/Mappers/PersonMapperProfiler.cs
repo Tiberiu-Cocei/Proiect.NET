@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AutoMapper;
 using SmartCity.Domain.Entities;
-using SmartCity.WebApi.Models.Coordinates;
 using SmartCity.WebApi.Models.Person;
 
 namespace SmartCity.WebApi.Mappers
@@ -11,16 +10,6 @@ namespace SmartCity.WebApi.Mappers
     {
         public PersonMapperProfiler()
         {
-            CreateMap<CoordinatesModel, CoordinatesEntity>()
-                .ForMember(dest => dest.Longitude, map => map.MapFrom(src => src.Longitude))
-                .ForMember(dest => dest.Latitude, map => map.MapFrom(src => src.Latitude))
-                .ForAllOtherMembers(x => x.Ignore());
-
-            CreateMap<CoordinatesEntity, CoordinatesModel>()
-                .ForMember(dest => dest.Longitude, map => map.MapFrom(src => src.Longitude))
-                .ForMember(dest => dest.Latitude, map => map.MapFrom(src => src.Latitude))
-                .ForAllOtherMembers(x => x.Ignore());
-
             CreateMap<PersonEntity, PersonModel>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
                 .ForMember(dest => dest.FirstName, map => map.MapFrom(src => src.FirstName))
