@@ -40,6 +40,15 @@ namespace SmartCity.WebApi.Controllers
             return Ok(_mapper.Map<PointOfInterestModel>(pointOfInterest));
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(PointOfInterestModel), 200)]
+        public async Task<IActionResult> GetAll()
+        {
+            var pointOfInterests = await _pointOfInterestService.GetAsync().ConfigureAwait(false);
+
+            return Ok(_mapper.Map<PointOfInterestModel>(pointOfInterests));
+        }
+
         /*[HttpGet("{city:City}", Name = "GetPointOfInterestByCity")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
         public async Task<IActionResult> GetPointOfInterestByCity([FromBody] CityEntity city)
