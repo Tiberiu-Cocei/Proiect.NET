@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartCity.Business.Bus
 {
-    public class IBusService
+    public interface IBusService
     {
     }
 }
