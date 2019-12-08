@@ -1,10 +1,21 @@
-﻿using System;
+﻿using SmartCity.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SmartCity.Business.BusRoute
 {
-    class IBusRouteService
+    public interface IBusRouteService
     {
+        Task AddAsync(BusRouteEntity entity);
+
+        Task<ICollection<BusRouteEntity>> GetAsync();
+
+        Task<BusRouteEntity> GetByIdAsync(Guid id);
+
+        Task DeleteAsync(Guid id);
+
+        Task UpdateAsync(BusRouteEntity busRouteService);
     }
 }
