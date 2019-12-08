@@ -52,5 +52,28 @@ namespace SmartCity.WebApi.Controllers
 
             return CreatedAtRoute("GetBusById", new { id = testCreate.Id }, _mapper.Map<BusEntity>(testCreate));
         }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateBus([FromRoute] Guid id, [FromBody] UpdateBusModel updateBusModel)
+        {
+            var bus = await _busService.GetByIdAsync(id).ConfigureAwait(false);
+            if (bus == null)
+            {
+                return NotFound();
+            }
+
+            var entity = _mapper.Map<BusEntity>(updateBusModel);
+            entity.Id = id;
+            await _busService.UpdateAsync(entity).ConfigureAwait(false);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteBus([FromRoute] Guid id)
+        {
+            await _busService.DeleteAsync(id).ConfigureAwait(false);
+            return NoContent();
+        }
     }
 }
