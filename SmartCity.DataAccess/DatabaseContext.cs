@@ -12,6 +12,8 @@ namespace SmartCity.DataAccess
 
         public IMongoCollection<CityEntity> Cities { get; set; }
 
+        public IMongoCollection<BusEntity> Buses { get; set; }
+
         public DatabaseContext(IConfiguration config)
         {
             var connectionString = config.GetSection("ConnectionStrings").Value;
@@ -23,6 +25,7 @@ namespace SmartCity.DataAccess
             Persons = database.GetCollection<PersonEntity>("Persons");
             PointOfInterests = database.GetCollection<PointOfInterestEntity>("PointOfInterests");
             Cities = database.GetCollection<CityEntity>("Cities");
+            Buses = database.GetCollection<BusEntity>("Buses");
         }
     }
 }

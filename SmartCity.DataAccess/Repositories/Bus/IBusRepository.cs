@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartCity.DataAccess.Repositories.Bus
 {
-    class IBusRepository
+    public class IBusRepository
     {
     }
 }
