@@ -15,7 +15,7 @@ namespace SmartCity.WebApi.Controllers
     [ApiController]
     public class PointOfInterestController : ControllerBase
     {
-        private readonly IPointOfInterestService _poitOfInterestService;
+        private readonly IPointOfInterestService _pointOfInterestService;
         private readonly IMapper _mapper;
 
         public PointOfInterestController(IPointOfInterestService pointOfInterestService, IMapper mapper)
@@ -23,21 +23,21 @@ namespace SmartCity.WebApi.Controllers
             Guard.ArgumentNotNull(pointOfInterestService, nameof(pointOfInterestService));
             Guard.ArgumentNotNull(mapper, nameof(mapper));
 
-            _poitOfInterestService = pointOfInterestService;
+            _pointOfInterestService = pointOfInterestService;
             _mapper = mapper;
         }
         [HttpGet("{id:guid}", Name = "GetPointOfInterestById")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
         public async Task<IActionResult> GetPointOfInterestById([FromRoute] Guid id)
         {
-            var pointOfIntereset = await _poitOfInterestService.GetByIdAsync(id).ConfigureAwait(false);
+            var pointOfInterest = await _pointOfInterestService.GetByIdAsync(id).ConfigureAwait(false);
 
-            if (pointOfIntereset == null)
+            if (pointOfInterest == null)
             {
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<PointOfInterestModel>(pointOfIntereset));
+            return Ok(_mapper.Map<PointOfInterestModel>(pointOfInterest));
         }
 
         /*[HttpGet("{city:City}", Name = "GetPointOfInterestByCity")]
@@ -52,9 +52,9 @@ namespace SmartCity.WebApi.Controllers
         {
             var pointOfInterestEntity = _mapper.Map<PointOfInterestEntity> (createPointOfInterestModel);
             
-            await _poitOfInterestService.AddAsync(pointOfInterestEntity).ConfigureAwait(false);
+            await _pointOfInterestService.AddAsync(pointOfInterestEntity).ConfigureAwait(false);
             
-            var testCreate = await _poitOfInterestService.GetByIdAsync(pointOfInterestEntity.Id).ConfigureAwait(false);
+            var testCreate = await _pointOfInterestService.GetByIdAsync(pointOfInterestEntity.Id).ConfigureAwait(false);
 
             return CreatedAtRoute("GetPointOfInterestById", new { id = testCreate.Id }, _mapper.Map<PointOfInterestEntity>(testCreate));
         }
@@ -62,7 +62,7 @@ namespace SmartCity.WebApi.Controllers
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdatePointOfInterest([FromRoute] Guid id, [FromBody] UpdatePointOfInterestModel updatePointOfInterestModel)
         {
-            var pointOfInterest = await _poitOfInterestService.GetByIdAsync(id).ConfigureAwait(false);
+            var pointOfInterest = await _pointOfInterestService.GetByIdAsync(id).ConfigureAwait(false);
             if(pointOfInterest == null)
             {
                 return NotFound();
@@ -70,7 +70,7 @@ namespace SmartCity.WebApi.Controllers
 
             var entity = _mapper.Map<PointOfInterestEntity>(updatePointOfInterestModel);
             entity.Id = id;
-            await _poitOfInterestService.UpdateAsync(entity).ConfigureAwait(false);
+            await _pointOfInterestService.UpdateAsync(entity).ConfigureAwait(false);
 
             return NoContent();
         }
@@ -78,7 +78,7 @@ namespace SmartCity.WebApi.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeletePointOfInterest([FromRoute] Guid id)
         {
-            await _poitOfInterestService.DeleteAsync(id).ConfigureAwait(false);
+            await _pointOfInterestService.DeleteAsync(id).ConfigureAwait(false);
             return NoContent();
         }
     }
