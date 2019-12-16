@@ -12,8 +12,6 @@ namespace SmartCity.WebApi.Models.BusRoute
 
         public string Name { get; set; }
 
-        public BusModel Bus { get; set; }
-
         public ICollection<BusStationModel> BusStations { get; set; }
 
         public DateTime CreationDate { get; set; }

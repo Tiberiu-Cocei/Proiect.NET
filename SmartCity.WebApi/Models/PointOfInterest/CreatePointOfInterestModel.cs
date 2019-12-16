@@ -14,7 +14,5 @@ namespace SmartCity.WebApi.Models.PointOfInterest
         public string Description { get; set; }
 
         public bool IsPrivate { get; set; }
-
-        public CityModel City { get; set; }
     }
 }

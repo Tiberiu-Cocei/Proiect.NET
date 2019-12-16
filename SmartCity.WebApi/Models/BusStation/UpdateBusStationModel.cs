@@ -1,7 +1,7 @@
 ﻿using SmartCity.WebApi.Models.Coordinates;
-using SmartCity.WebApi.Models.BusRoute;
 using System;
 using System.Collections.Generic;
+using SmartCity.WebApi.Models.Bus;
 
 namespace SmartCity.WebApi.Models.BusStation
 {
@@ -13,6 +13,6 @@ namespace SmartCity.WebApi.Models.BusStation
 
         public CoordinatesModel Coordinates { get; set; }
         
-        public List<BusRouteModel> BusRoutes { get; set; }
+        public ICollection<BusModel> Buses { get; set; }
     }
 }

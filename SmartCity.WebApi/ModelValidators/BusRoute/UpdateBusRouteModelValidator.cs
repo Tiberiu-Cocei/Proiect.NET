@@ -1,12 +1,6 @@
 ﻿using FluentValidation;
 using SmartCity.WebApi.Models.BusRoute;
-using SmartCity.WebApi.Models.Person;
 using SmartCity.WebApi.ModelValidators.BusStation;
-using SmartCity.WebApi.ModelValidators.City;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SmartCity.WebApi.ModelValidators.BusRoute
 {

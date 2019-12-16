@@ -1,14 +1,9 @@
-﻿using SmartCity.Domain.Entities;
-using System;
+﻿using SmartCity.WebApi.Models.Coordinates;
 
 namespace SmartCity.WebApi.Models.Bus
 {
     public class CreateBusModel
     {
-        public Guid Id { get; set; }
-
-        public CoordinatesEntity Coordinates { get; set; }
-
-        public bool GoingToGarrage { get; set; }
+        public CoordinatesModel Coordinates { get; set; }
     }
 }

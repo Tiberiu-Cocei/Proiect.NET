@@ -1,6 +1,4 @@
-﻿using SmartCity.WebApi.Models.Bus;
-using SmartCity.WebApi.Models.BusStation;
-using SmartCity.WebApi.Models.City;
+﻿using SmartCity.WebApi.Models.BusStation;
 using System.Collections.Generic;
 
 namespace SmartCity.WebApi.Models.BusRoute
@@ -9,6 +7,6 @@ namespace SmartCity.WebApi.Models.BusRoute
     {
         public string Name { get; set; }
 
-        public BusModel Bus { get; set; }
+        public ICollection<BusStationModel> BusStations { get; set; }
     }
 }

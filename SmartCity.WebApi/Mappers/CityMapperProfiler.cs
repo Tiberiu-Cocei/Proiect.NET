@@ -13,10 +13,6 @@ namespace SmartCity.WebApi.Mappers
             CreateMap<CityEntity, CityModel>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, map => map.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Buses, map => map.MapFrom((src, dest, destMember, context) =>
-                    context.Mapper.Map<ICollection<PointOfInterestEntity>>(src.Buses)))
-                .ForMember(dest => dest.BusStations, map => map.MapFrom((src, dest, destMember, context) =>
-                    context.Mapper.Map<ICollection<PointOfInterestEntity>>(src.BusStations)))
                 .ForMember(dest => dest.BusRoutes, map => map.MapFrom((src, dest, destMember, context) =>
                     context.Mapper.Map<ICollection<PointOfInterestEntity>>(src.BusRoutes)))
                 .ForMember(dest => dest.PointsOfInterests, map => map.MapFrom((src, dest, destMember, context) =>
@@ -28,8 +24,6 @@ namespace SmartCity.WebApi.Mappers
             CreateMap<CreateCityModel, CityEntity>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(_ => Guid.NewGuid()))
                 .ForMember(dest => dest.Name, map => map.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Buses, map => map.MapFrom(_ => new List<BusEntity>()))
-                .ForMember(dest => dest.BusStations, map => map.MapFrom(_ => new List<BusStationEntity>()))
                 .ForMember(dest => dest.BusRoutes, map => map.MapFrom(_ => new List<BusRouteEntity>()))
                 .ForMember(dest => dest.PointsOfInterests, map => map.MapFrom(_ => new List<PointOfInterestEntity>()))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(_ => DateTime.Now))
@@ -39,10 +33,6 @@ namespace SmartCity.WebApi.Mappers
             CreateMap<UpdateCityModel, CityEntity>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, map => map.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Buses, map => map.MapFrom((src, dest, destMember, context) =>
-                    context.Mapper.Map<ICollection<PointOfInterestEntity>>(src.Buses)))
-                .ForMember(dest => dest.BusStations, map => map.MapFrom((src, dest, destMember, context) =>
-                    context.Mapper.Map<ICollection<PointOfInterestEntity>>(src.BusStations)))
                 .ForMember(dest => dest.BusRoutes, map => map.MapFrom((src, dest, destMember, context) =>
                     context.Mapper.Map<ICollection<PointOfInterestEntity>>(src.BusRoutes)))
                 .ForMember(dest => dest.PointsOfInterests, map => map.MapFrom((src, dest, destMember, context) =>

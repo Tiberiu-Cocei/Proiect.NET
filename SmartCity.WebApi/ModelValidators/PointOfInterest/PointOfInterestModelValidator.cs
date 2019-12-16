@@ -14,7 +14,6 @@ namespace SmartCity.WebApi.ModelValidators.PointOfInterest
             RuleFor(x => x.Name).NotEmpty().Length(1, 100);
             RuleFor(x => x.Description).Length(0, 300);
             RuleFor(x => x.IsPrivate).NotEmpty();
-            RuleFor(x => x.City).NotEmpty();
             RuleFor(x => x.CreationDate).NotEmpty();
             RuleFor(x => x.ModifiedDate).NotEmpty();
         }

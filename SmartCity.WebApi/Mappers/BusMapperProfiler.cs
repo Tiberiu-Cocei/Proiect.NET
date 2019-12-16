@@ -19,7 +19,7 @@ namespace SmartCity.WebApi.Mappers
 
             CreateMap<CreateBusModel, BusEntity>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(_ => Guid.NewGuid()))
-                .ForMember(dest => dest.Coordinates, map => map.MapFrom(_ => new CoordinatesEntity()))
+                .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
                 .ForMember(dest => dest.GoingToGarage, map => map.MapFrom(_ => false))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.ModifiedDate, map => map.MapFrom(_ => DateTime.Now))
