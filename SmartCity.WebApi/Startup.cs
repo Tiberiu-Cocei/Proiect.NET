@@ -8,17 +8,29 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SmartCity.Business.Bus;
 using SmartCity.Business.City;
 using SmartCity.Business.Person;
 using SmartCity.Business.PointOfInterest;
 using SmartCity.DataAccess;
+using SmartCity.DataAccess.Repositories.Bus;
 using SmartCity.DataAccess.Repositories.City;
 using SmartCity.DataAccess.Repositories.Person;
 using SmartCity.DataAccess.Repositories.PointOfInterest;
 using SmartCity.WebApi.Mappers;
+using SmartCity.WebApi.Models.Bus;
+using SmartCity.WebApi.Models.BusRoute;
+using SmartCity.WebApi.Models.BusStation;
+using SmartCity.WebApi.Models.City;
+using SmartCity.WebApi.Models.Coordinates;
 using SmartCity.WebApi.Models.Person;
 using SmartCity.WebApi.Models.PointOfInterest;
 using SmartCity.WebApi.Models.User;
+using SmartCity.WebApi.ModelValidators.Bus;
+using SmartCity.WebApi.ModelValidators.BusRoute;
+using SmartCity.WebApi.ModelValidators.BusStation;
+using SmartCity.WebApi.ModelValidators.City;
+using SmartCity.WebApi.ModelValidators.Coordinates;
 using SmartCity.WebApi.ModelValidators.Person;
 using SmartCity.WebApi.ModelValidators.PointOfInterest;
 using SmartCity.WebApi.ModelValidators.User;
@@ -60,6 +72,24 @@ namespace SmartCity.WebApi
             services.AddTransient<IValidator<UpdatePointOfInterestModel>, UpdatePointOfInterestModelValidator>();
             services.AddTransient<IValidator<PointOfInterestModel>, PointOfInterestModelValidator>();
 
+            services.AddTransient<IValidator<BusModel>, BusModelValidator>();
+            services.AddTransient<IValidator<CreateBusModel>, CreateBusModelValidator>();
+            services.AddTransient<IValidator<UpdateBusModel>, UpdateBusModelValidator>();
+
+            services.AddTransient<IValidator<BusRouteModel>, BusRouteModelValidator>();
+            services.AddTransient<IValidator<CreateBusRouteModel>, CreateBusRouteModelValidator>();
+            services.AddTransient<IValidator<UpdateBusRouteModel>, UpdateBusRouteModelValidator>();
+
+            services.AddTransient<IValidator<BusStationModel>, BusStationModelValidator>();
+            services.AddTransient<IValidator<CreateBusStationModel>, CreateBusStationModelValidator>();
+            services.AddTransient<IValidator<UpdateBusStationModel>, UpdateBusStationModelValidator>();
+
+            services.AddTransient<IValidator<CityModel>, CityModelValidator>();
+            services.AddTransient<IValidator<CreateCityModel>, CreateCityModelValidator>();
+            services.AddTransient<IValidator<UpdateCityModel>, UpdateCityModelValidator>();
+
+            services.AddTransient<IValidator<CoordinatesModel>, CoordinatesModelValidator>();
+
             services.AddTransient<IValidator<UserModel>, UserModelValidatior>();
 
             services.AddMvc()
@@ -75,10 +105,12 @@ namespace SmartCity.WebApi
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IPointOfInterestService, PointOfInterestService>();
             services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IBusService, BusService>();
 
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPointOfInterestRepository, PointOfInterestRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IBusRepository, BusRepository>();
 
             services.AddAutoMapper(typeof(AutoMapperConfig));
 

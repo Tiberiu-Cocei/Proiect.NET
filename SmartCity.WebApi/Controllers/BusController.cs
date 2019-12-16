@@ -41,6 +41,8 @@ namespace SmartCity.WebApi.Controllers
             return Ok(_mapper.Map<BusModel>(bus));
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> AddBus([FromBody] CreateBusModel createBusModel)
         {
