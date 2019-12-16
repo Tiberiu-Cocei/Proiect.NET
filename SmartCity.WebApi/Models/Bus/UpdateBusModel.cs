@@ -11,10 +11,6 @@ namespace SmartCity.WebApi.Models.Bus
 
         public CoordinatesModel Coordinates { get; set; }
 
-        public BusRouteModel BusRoute { get; set; }
-
         public bool GoingToGarage { get; set; }
-
-        public CityModel City { get; set; }
     }
 }

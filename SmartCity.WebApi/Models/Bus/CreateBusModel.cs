@@ -1,12 +1,14 @@
-﻿using SmartCity.WebApi.Models.BusRoute;
-using SmartCity.WebApi.Models.City;
+﻿using SmartCity.Domain.Entities;
+using System;
 
 namespace SmartCity.WebApi.Models.Bus
 {
     public class CreateBusModel
     {
-        public BusRouteModel BusRoute { get; set; }
+        public Guid Id { get; set; }
 
-        public CityModel City { get; set; }
+        public CoordinatesEntity Coordinates { get; set; }
+
+        public bool GoingToGarrage { get; set; }
     }
 }

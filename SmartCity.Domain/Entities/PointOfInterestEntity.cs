@@ -23,10 +23,6 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public bool IsPrivate { get; set; }
 
-        [BsonElement("City")]
-        [BsonRequired]
-        public CityEntity City { get; set; }
-
         [BsonElement("CreationDate")]
         [BsonRequired]
         public DateTime CreationDate { get; set; }

@@ -12,9 +12,7 @@ namespace SmartCity.WebApi.Mappers
             CreateMap<BusEntity, BusModel>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
-                .ForMember(dest => dest.BusRoute, map => map.MapFrom(src => src.BusRoute))
                 .ForMember(dest => dest.GoingToGarage, map => map.MapFrom(src => src.GoingToGarage))
-                .ForMember(dest => dest.City, map => map.MapFrom(src => src.City))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(src => src.CreationDate))
                 .ForMember(dest => dest.ModifiedDate, map => map.MapFrom(src => src.ModifiedDate))
                 .ForAllOtherMembers(x => x.Ignore());
@@ -22,9 +20,7 @@ namespace SmartCity.WebApi.Mappers
             CreateMap<CreateBusModel, BusEntity>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(_ => Guid.NewGuid()))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(_ => new CoordinatesEntity()))
-                .ForMember(dest => dest.BusRoute, map => map.MapFrom(src => src.BusRoute))
                 .ForMember(dest => dest.GoingToGarage, map => map.MapFrom(_ => false))
-                .ForMember(dest => dest.City, map => map.MapFrom(src => src.City))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.ModifiedDate, map => map.MapFrom(_ => DateTime.Now))
                 .ForAllOtherMembers(x => x.Ignore());
@@ -32,9 +28,7 @@ namespace SmartCity.WebApi.Mappers
             CreateMap<UpdateBusModel, BusEntity>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
-                .ForMember(dest => dest.BusRoute, map => map.MapFrom(src => src.BusRoute))
                 .ForMember(dest => dest.GoingToGarage, map => map.MapFrom(src => src.GoingToGarage))
-                .ForMember(dest => dest.City, map => map.MapFrom(src => src.City))
                 .ForMember(dest => dest.ModifiedDate, map => map.MapFrom(_ => DateTime.Now))
                 .ForAllOtherMembers(x => x.Ignore());
         }

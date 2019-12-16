@@ -1,7 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SmartCity.Domain.Entities
 {
@@ -13,13 +12,13 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public string Name { get; set; }
 
+        [BsonElement("Bus")]
+        [BsonRequired]
+        public BusEntity Bus { get; set; }
+
         [BsonElement("BusStations")]
         [BsonRequired]
         public ICollection<BusStationEntity> BusStations { get; set; }
-
-        [BsonElement("City")]
-        [BsonRequired]
-        public CityEntity City { get; set; }
 
         [BsonElement("CreationDate")]
         [BsonRequired]
