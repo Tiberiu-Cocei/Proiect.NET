@@ -12,10 +12,6 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public string Name { get; set; }
 
-        [BsonElement("Bus")]
-        [BsonRequired]
-        public BusEntity Bus { get; set; }
-
         [BsonElement("BusStations")]
         [BsonRequired]
         public ICollection<BusStationEntity> BusStations { get; set; }

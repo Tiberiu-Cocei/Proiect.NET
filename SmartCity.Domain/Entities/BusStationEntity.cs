@@ -17,6 +17,10 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public CoordinatesEntity Coordinates { get; set; }
 
+        [BsonElement("Buses")]
+        [BsonRequired]
+        public ICollection<BusEntity> Buses { get; set; }
+
         [BsonElement("CreationDate")]
         [BsonRequired]
         public DateTime CreationDate { get; set; }
