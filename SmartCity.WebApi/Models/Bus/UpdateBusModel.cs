@@ -1,6 +1,4 @@
 ﻿using SmartCity.WebApi.Models.Coordinates;
-using SmartCity.WebApi.Models.BusRoute;
-using SmartCity.WebApi.Models.City;
 using System;
 
 namespace SmartCity.WebApi.Models.Bus

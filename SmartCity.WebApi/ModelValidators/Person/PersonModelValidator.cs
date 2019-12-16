@@ -1,11 +1,7 @@
 ﻿using FluentValidation;
 using SmartCity.WebApi.Models.Person;
-using SmartCity.WebApi.ModelValidators.PointOfInterest;
 using SmartCity.WebApi.ModelValidators.Coordinates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SmartCity.WebApi.ModelValidators.PointOfInterest;
 
 namespace SmartCity.WebApi.ModelValidators.Person
 {

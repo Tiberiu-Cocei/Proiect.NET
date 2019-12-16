@@ -1,5 +1,4 @@
 ﻿using SmartCity.Domain.Entities;
-using System;
 using System.Threading.Tasks;
 
 namespace SmartCity.Business.General

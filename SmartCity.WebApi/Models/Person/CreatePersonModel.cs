@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SmartCity.WebApi.Models.Person
+﻿namespace SmartCity.WebApi.Models.Person
 {
     public class CreatePersonModel
     {

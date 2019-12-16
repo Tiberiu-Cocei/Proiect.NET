@@ -1,7 +1,7 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using SmartCity.Domain.Entities;
 using SmartCity.WebApi.Models.Bus;
+using System;
 
 namespace SmartCity.WebApi.Mappers
 {

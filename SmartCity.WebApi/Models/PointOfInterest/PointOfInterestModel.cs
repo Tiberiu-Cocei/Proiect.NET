@@ -1,5 +1,4 @@
-﻿using SmartCity.WebApi.Models.City;
-using SmartCity.WebApi.Models.Coordinates;
+﻿using SmartCity.WebApi.Models.Coordinates;
 using System;
 
 namespace SmartCity.WebApi.Models.PointOfInterest

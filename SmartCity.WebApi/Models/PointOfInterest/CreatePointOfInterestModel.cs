@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SmartCity.WebApi.Models.City;
-using SmartCity.WebApi.Models.Coordinates;
+﻿using SmartCity.WebApi.Models.Coordinates;
 
 namespace SmartCity.WebApi.Models.PointOfInterest
 {

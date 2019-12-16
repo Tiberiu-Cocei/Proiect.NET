@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using SmartCity.WebApi.Models.City;
-using SmartCity.WebApi.ModelValidators.PointOfInterest;
 using SmartCity.WebApi.ModelValidators.BusRoute;
+using SmartCity.WebApi.ModelValidators.PointOfInterest;
 
 namespace SmartCity.WebApi.ModelValidators.City
 {

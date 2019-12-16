@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using SmartCity.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Vanguard;
 
 namespace SmartCity.DataAccess.Repositories.City

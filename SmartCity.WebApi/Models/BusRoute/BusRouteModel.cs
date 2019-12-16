@@ -1,6 +1,4 @@
-﻿using SmartCity.WebApi.Models.Bus;
-using SmartCity.WebApi.Models.BusStation;
-using SmartCity.WebApi.Models.City;
+﻿using SmartCity.WebApi.Models.BusStation;
 using System;
 using System.Collections.Generic;
 

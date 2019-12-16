@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using SmartCity.Domain.Entities;
 using SmartCity.WebApi.Models.BusStation;
+using System;
+using System.Collections.Generic;
 
 namespace SmartCity.WebApi.Mappers
 {

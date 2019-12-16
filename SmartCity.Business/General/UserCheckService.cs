@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using SmartCity.DataAccess.Repositories.Person;
+﻿using SmartCity.DataAccess.Repositories.Person;
 using SmartCity.Domain.Entities;
+using System.Threading.Tasks;
 using Vanguard;
 
 namespace SmartCity.Business.General

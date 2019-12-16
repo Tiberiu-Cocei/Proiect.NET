@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartCity.Business.PointOfInterest;
 using SmartCity.Domain.Entities;
 using SmartCity.WebApi.Models.PointOfInterest;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Vanguard;
 
 namespace SmartCity.WebApi.Controllers
@@ -26,6 +25,7 @@ namespace SmartCity.WebApi.Controllers
             _pointOfInterestService = pointOfInterestService;
             _mapper = mapper;
         }
+
         [HttpGet("{id:guid}", Name = "GetPointOfInterestById")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
         public async Task<IActionResult> GetPointOfInterestById([FromRoute] Guid id)

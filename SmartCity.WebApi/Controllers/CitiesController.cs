@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartCity.Business.City;
 using SmartCity.Domain.Entities;
 using SmartCity.WebApi.Models.City;
+using System;
+using System.Threading.Tasks;
 using Vanguard;
 
 namespace SmartCity.WebApi.Controllers

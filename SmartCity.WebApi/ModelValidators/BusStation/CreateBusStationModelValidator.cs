@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using SmartCity.WebApi.ModelValidators.Coordinates;
 using SmartCity.WebApi.Models.BusStation;
+using SmartCity.WebApi.ModelValidators.Coordinates;
 
 namespace SmartCity.WebApi.ModelValidators.BusStation
 {

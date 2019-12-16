@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using SmartCity.WebApi.Models.PointOfInterest;
-using SmartCity.WebApi.Models.Coordinates;
 using SmartCity.WebApi.ModelValidators.Coordinates;
 
 namespace SmartCity.WebApi.ModelValidators.PointOfInterest

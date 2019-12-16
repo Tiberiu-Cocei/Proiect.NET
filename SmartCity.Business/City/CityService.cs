@@ -3,7 +3,6 @@ using SmartCity.DataAccess.Repositories.City;
 using SmartCity.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Vanguard;
 
