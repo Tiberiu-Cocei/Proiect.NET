@@ -14,7 +14,8 @@ namespace SmartCity.WebApi.Mappers
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
                 .ForMember(dest => dest.Name, map => map.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Description, map => map.MapFrom(src => src.Description))
-                .ForMember(dest => dest.IsPrivate, map => map.MapFrom(src => src.IsPrivate))
+                .ForMember(dest => dest.PersonId, map => map.MapFrom(src => src.PersonId))
+                .ForMember(dest => dest.CityName, map => map.MapFrom(src => src.CityName))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(src => src.CreationDate))
                 .ForMember(dest => dest.ModifiedDate, map => map.MapFrom(src => src.ModifiedDate))
                 .ForAllOtherMembers(x => x.Ignore());
@@ -24,7 +25,8 @@ namespace SmartCity.WebApi.Mappers
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
                 .ForMember(dest => dest.Name, map => map.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Description, map => map.MapFrom(src => src.Description))
-                .ForMember(dest => dest.IsPrivate, map => map.MapFrom(src => src.IsPrivate))
+                .ForMember(dest => dest.PersonId, map => map.MapFrom(src => src.PersonId))
+                .ForMember(dest => dest.CityName, map => map.MapFrom(src => src.CityName))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.ModifiedDate, map => map.MapFrom(_ => DateTime.Now))
                 .ForAllOtherMembers(x => x.Ignore());

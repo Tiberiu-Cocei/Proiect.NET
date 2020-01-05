@@ -13,7 +13,9 @@ namespace SmartCity.WebApi.Models.PointOfInterest
 
         public string Description { get; set; }
 
-        public bool IsPrivate { get; set; }
+        public Guid PersonId { get; set; }
+
+        public string CityName { get; set; }
 
         public DateTime CreationDate { get; set; }
 
