@@ -35,6 +35,11 @@ namespace SmartCity.Business.PointOfInterest
             return await _repository.GetById(id).ConfigureAwait(false);
         }
 
+        public async Task<PointOfInterestEntity> GetByPersonIdAsync(Guid personId)
+        {
+            return await _repository.GetByPersonId(personId).ConfigureAwait(false);
+        }
+
         public async Task DeleteAsync(Guid id)
         {
             var pointOfInterest = await _repository.GetById(id).ConfigureAwait(false);
