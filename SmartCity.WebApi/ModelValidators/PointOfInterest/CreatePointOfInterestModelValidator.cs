@@ -12,7 +12,7 @@ namespace SmartCity.WebApi.ModelValidators.PointOfInterest
             RuleFor(x => x.Name).NotEmpty().Length(1, 100);
             RuleFor(x => x.Description).Length(0, 300);
             RuleFor(x => x.CityName).NotEmpty();
-            RuleFor(x => x.PersonId).NotEmpty();
+            RuleFor(x => x.PersonId).NotNull();
         }
     }
 }
