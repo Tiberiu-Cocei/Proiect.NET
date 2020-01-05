@@ -19,9 +19,16 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public string Description { get; set; }
 
-        [BsonElement("IsPrivate")]
+        [BsonElement("personId")]
+        public Guid personId { get; set; }
+
+        [BsonElement("cityName")]
         [BsonRequired]
-        public bool IsPrivate { get; set; }
+        public string cityName { get; set; }
+
+        /*[BsonElement("IsPrivate")]
+        [BsonRequired]
+        public bool IsPrivate { get; set; }*/
 
         [BsonElement("CreationDate")]
         [BsonRequired]
