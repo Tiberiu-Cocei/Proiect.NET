@@ -49,12 +49,14 @@ namespace SmartCity.WebApi.Controllers
             return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
         }
 
-        /*[HttpGet("{city:City}", Name = "GetPointOfInterestByCity")]
+        [HttpGet("{set:string}", Name = "GetPointOfInterestByPersonId")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
-        public async Task<IActionResult> GetPointOfInterestByCity([FromBody] CityEntity city)
+        public async Task<IActionResult> GetPointOfInterestByPersonId([FromBody] GetPointOfInterestModel pointOfInterest)
         {
-            var poitOfInterest =
-        }*/
+            var pointOfInterests = await _pointOfInterestService.GetByPersonIdAsync(pointOfInterest.PersonId).ConfigureAwait(false);
+
+            return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddPointOfInterest([FromBody] CreatePointOfInterestModel createPointOfInterestModel)

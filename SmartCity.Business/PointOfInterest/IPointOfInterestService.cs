@@ -13,8 +13,12 @@ namespace SmartCity.Business.PointOfInterest
 
         Task<PointOfInterestEntity> GetByIdAsync(Guid id);
 
+        Task<ICollection<PointOfInterestEntity>> GetByPersonIdAsync(Guid personId);
+
         Task DeleteAsync(Guid id);
 
         Task UpdateAsync(PointOfInterestEntity pointOfInterest);
+
+        Task<ICollection<PointOfInterestEntity>> GetByCityName(string cityName);
     }
 }

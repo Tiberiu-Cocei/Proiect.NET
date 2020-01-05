@@ -35,7 +35,7 @@ namespace SmartCity.Business.PointOfInterest
             return await _repository.GetById(id).ConfigureAwait(false);
         }
 
-        public async Task<PointOfInterestEntity> GetByPersonIdAsync(Guid personId)
+        public async Task<ICollection<PointOfInterestEntity>> GetByPersonIdAsync(Guid personId)
         {
             return await _repository.GetByPersonId(personId).ConfigureAwait(false);
         }
@@ -58,6 +58,13 @@ namespace SmartCity.Business.PointOfInterest
             {
                 await _repository.Update(pointOfInterest).ConfigureAwait(false);
             }
+        }
+
+        public async Task<ICollection<PointOfInterestEntity>> GetByCityName(string cityName)
+        {
+            Guard.ArgumentNotNull(cityName, nameof(cityName));
+
+            return await _repository.GetByCityName(cityName).ConfigureAwait(false);
         }
     }
 }

@@ -44,11 +44,11 @@ namespace SmartCity.DataAccess.Repositories.PointOfInterest
             return pointOfInterest.FirstOrDefault();
         }
 
-        public async Task<PointOfInterestEntity> GetByPersonId(Guid personId)
+        public async Task<ICollection<PointOfInterestEntity>> GetByPersonId(Guid personId)
         {
             var pointOfInterest = await _pointOfInterests.FindAsync(x => x.PersonId == personId).ConfigureAwait(false);
 
-            return pointOfInterest.FirstOrDefault();
+            return pointOfInterest.ToList();
         }
 
         public async Task Update(PointOfInterestEntity entity)
@@ -59,6 +59,13 @@ namespace SmartCity.DataAccess.Repositories.PointOfInterest
         public async Task Delete(Guid id)
         {
             await _pointOfInterests.DeleteOneAsync(x => x.Id == id).ConfigureAwait(false);
+        }
+
+        public async Task<ICollection<PointOfInterestEntity>> GetByCityName(string cityName)
+        {
+            var response = await _pointOfInterests.FindAsync(x => x.CityName == cityName).ConfigureAwait(false);
+
+            return response.ToList();
         }
     }
 }
