@@ -49,11 +49,11 @@ namespace SmartCity.WebApi.Controllers
             return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
         }
 
-        [HttpGet("{set:string}", Name = "GetPointOfInterestByPersonId")]
+        [HttpGet("{cityName}", Name = "GetPointOfInterestByCityName")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
-        public async Task<IActionResult> GetPointOfInterestByPersonId([FromBody] GetPointOfInterestModel pointOfInterest)
+        public async Task<IActionResult> GetPointOfInterestByCityName([FromRoute] string cityName)
         {
-            var pointOfInterests = await _pointOfInterestService.GetByPersonIdAsync(pointOfInterest.PersonId).ConfigureAwait(false);
+            var pointOfInterests = await _pointOfInterestService.GetByCityName(cityName).ConfigureAwait(false);
 
             return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
         }

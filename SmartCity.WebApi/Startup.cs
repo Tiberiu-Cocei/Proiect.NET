@@ -92,8 +92,6 @@ namespace SmartCity.WebApi
 
             services.AddTransient<IValidator<UserModel>, UserModelValidatior>();
 
-            services.AddTransient<IValidator<GetPointOfInterestModel>, GetPointOfInterestModelValidator>();
-
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation();
