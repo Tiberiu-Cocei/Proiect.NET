@@ -9,7 +9,7 @@ namespace SmartCity.Domain.Entities
 
         [BsonElement("BusNumber")]
         [BsonRequired]
-        public string BusNumber { get; set; }
+        public int BusNummber { get; set; }
 
         [BsonElement("Coordinates")]
         [BsonRequired]

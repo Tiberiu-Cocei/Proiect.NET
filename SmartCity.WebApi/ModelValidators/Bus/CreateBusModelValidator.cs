@@ -8,7 +8,6 @@ namespace SmartCity.WebApi.ModelValidators.Bus
     {
         public CreateBusModelValidator()
         {
-            RuleFor(x => x.BusNumber).NotEmpty();
             RuleFor(x => x.Coordinates).SetValidator(new CoordinatesModelValidator());
         }
     }
