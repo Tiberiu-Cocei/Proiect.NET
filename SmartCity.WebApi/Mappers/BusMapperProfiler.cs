@@ -11,6 +11,7 @@ namespace SmartCity.WebApi.Mappers
         {
             CreateMap<BusEntity, BusModel>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
+                .ForMember(dest => dest.BusNumber, map => map.MapFrom(src => src.BusNumber))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
                 .ForMember(dest => dest.GoingToGarage, map => map.MapFrom(src => src.GoingToGarage))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(src => src.CreationDate))
@@ -19,6 +20,7 @@ namespace SmartCity.WebApi.Mappers
 
             CreateMap<CreateBusModel, BusEntity>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(_ => Guid.NewGuid()))
+                .ForMember(dest => dest.BusNumber, map => map.MapFrom(src => src.BusNumber))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
                 .ForMember(dest => dest.GoingToGarage, map => map.MapFrom(_ => false))
                 .ForMember(dest => dest.CreationDate, map => map.MapFrom(_ => DateTime.Now))
@@ -27,6 +29,7 @@ namespace SmartCity.WebApi.Mappers
 
             CreateMap<UpdateBusModel, BusEntity>()
                 .ForMember(dest => dest.Id, map => map.MapFrom(src => src.Id))
+                .ForMember(dest => dest.BusNumber, map => map.MapFrom(src => src.BusNumber))
                 .ForMember(dest => dest.Coordinates, map => map.MapFrom(src => src.Coordinates))
                 .ForMember(dest => dest.GoingToGarage, map => map.MapFrom(src => src.GoingToGarage))
                 .ForMember(dest => dest.ModifiedDate, map => map.MapFrom(_ => DateTime.Now))

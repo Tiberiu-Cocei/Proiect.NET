@@ -6,6 +6,8 @@ namespace SmartCity.WebApi.Models.Bus
     {
         public Guid Id { get; set; }
 
+        public string BusNumber { get; set; }
+
         public CoordinatesModel Coordinates { get; set; }
 
         public bool GoingToGarage { get; set; }
