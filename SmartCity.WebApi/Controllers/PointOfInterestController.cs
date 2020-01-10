@@ -26,7 +26,7 @@ namespace SmartCity.WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{id:guid}", Name = "GetPointOfInterestById")]
+/*        [HttpGet("{id:guid}", Name = "GetPointOfInterestById")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
         public async Task<IActionResult> GetPointOfInterestById([FromRoute] Guid id)
         {
@@ -38,7 +38,7 @@ namespace SmartCity.WebApi.Controllers
             }
 
             return Ok(_mapper.Map<PointOfInterestModel>(pointOfInterest));
-        }
+        }*/
 
         [HttpGet(Name = "GetAllPointOfInterest")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
@@ -54,6 +54,15 @@ namespace SmartCity.WebApi.Controllers
         public async Task<IActionResult> GetPointOfInterestByCityName([FromRoute] string cityName)
         {
             var pointOfInterests = await _pointOfInterestService.GetByCityName(cityName).ConfigureAwait(false);
+
+            return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
+        }
+
+        [HttpGet("{personId:guid}", Name = "GetPointOfInterestByPersonId")]
+        [ProducesResponseType(typeof(PointOfInterestModel), 200)]
+        public async Task<IActionResult> GetPointOfInterestByPersonId([FromRoute] Guid personId)
+        {
+            var pointOfInterests = await _pointOfInterestService.GetByPersonIdAsync(personId).ConfigureAwait(false);
 
             return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
         }
