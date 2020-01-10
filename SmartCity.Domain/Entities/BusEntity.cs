@@ -7,10 +7,6 @@ namespace SmartCity.Domain.Entities
     {
         public BusEntity() : base() {}
 
-        [BsonElement("BusNumber")]
-        [BsonRequired]
-        public int BusNummber { get; set; }
-
         [BsonElement("Coordinates")]
         [BsonRequired]
         public CoordinatesEntity Coordinates { get; set; }
