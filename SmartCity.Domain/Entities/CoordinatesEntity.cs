@@ -13,6 +13,12 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public double Latitude;
 
+        public CoordinatesEntity(double Longitude, double Latitude)
+        {
+            this.Longitude = Longitude;
+            this.Latitude = Latitude;
+        }
+
         public override bool Equals(Object obj)
         {
             if (obj is CoordinatesEntity)

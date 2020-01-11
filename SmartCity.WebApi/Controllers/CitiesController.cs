@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartCity.Business.City;
 using SmartCity.Domain.Entities;
+using SmartCity.Domain.ExtensionMethods;
 using SmartCity.WebApi.Models.City;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vanguard;
 
@@ -40,6 +42,87 @@ namespace SmartCity.WebApi.Controllers
             }
 
             return Ok(_mapper.Map<CityModel>(city));
+        }
+
+        [HttpGet("{startcoordonates}/{endcoordonates}/{cityname}", Name = "GetBusRoute")]
+        public async Task<IActionResult> GetRout([FromRoute] string startcoordonates, [FromRoute] string endcoordonates, [FromRoute] string cityname)
+        {
+            if(startcoordonates == string.Empty || startcoordonates == null
+                || endcoordonates == string.Empty || endcoordonates == null
+                || cityname == string.Empty || cityname == null)
+            {
+                return BadRequest();
+            }
+            var res = await _cityService.GetByNameAsync(cityname).ConfigureAwait(false);
+            if(res == null)
+            {
+                return BadRequest();
+            }
+            HashSet<BusStationEntity> stationEntities = new HashSet<BusStationEntity>();
+            foreach(BusRouteEntity bus in res.BusRoutes)
+            {
+                stationEntities.UnionWith(bus.BusStations);
+            }
+            // Fac cast la coordonatele din input
+            CoordinatesEntity coordinatesEntity = new CoordinatesEntity(Convert.ToDouble(startcoordonates.Split('_')[0]), Convert.ToDouble(startcoordonates.Split('_')[1]));
+            CoordinatesEntity coordinatesEntity1 = new CoordinatesEntity(Convert.ToDouble(endcoordonates.Split('_')[0]), Convert.ToDouble(endcoordonates.Split('_')[1]));
+
+            // Caut cea mai apropiata statie pentru punctul de start
+            double longDiff = -1.0;
+            double latDiff = -1.0;
+            BusStationEntity station = new BusStationEntity();
+
+            // Caut cea mai apropiata statie pentru punctul de stop
+            double longDiff1 = -1.0;
+            double latDiff1 = -1.0;
+            BusStationEntity stationEntity = new BusStationEntity();
+            foreach(BusStationEntity bus in stationEntities)
+            {
+                // Caut cea mai apropiata statie pentru punctul de start
+                if (Math.Abs(bus.Coordinates.Latitude - coordinatesEntity.Latitude) <= latDiff && Math.Abs(bus.Coordinates.Longitude - coordinatesEntity.Longitude) <= longDiff)
+                {
+                    station = new BusStationEntity
+                    {
+                        Id = bus.Id,
+                        Name = bus.Name,
+                        Coordinates = bus.Coordinates,
+                        Buses = bus.Buses,
+                        CreationDate = bus.CreationDate,
+                        ModifiedDate = bus.ModifiedDate
+                    };
+                    longDiff = Math.Abs(bus.Coordinates.Latitude - coordinatesEntity.Latitude);
+                    latDiff = Math.Abs(bus.Coordinates.Longitude - coordinatesEntity.Longitude);
+                }
+
+                // Caut cea mai apropiata statie pentru punctul de stop
+                if (Math.Abs(bus.Coordinates.Latitude - coordinatesEntity1.Latitude) <= latDiff1 && Math.Abs(bus.Coordinates.Longitude - coordinatesEntity1.Longitude) <= longDiff1)
+                {
+                    stationEntity = new BusStationEntity
+                    {
+                        Id = bus.Id,
+                        Name = bus.Name,
+                        Coordinates = bus.Coordinates,
+                        Buses = bus.Buses,
+                        CreationDate = bus.CreationDate,
+                        ModifiedDate = bus.ModifiedDate
+                    };
+                    longDiff1 = Math.Abs(bus.Coordinates.Latitude - coordinatesEntity1.Latitude);
+                    latDiff1 = Math.Abs(bus.Coordinates.Longitude - coordinatesEntity1.Longitude);
+                }
+            }
+            string startStationName = station.Name;
+            string stopStationName = stationEntity.Name;
+
+            List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> realResult = BusStationExtensions.ShortestPath(new List<BusRouteEntity>(res.BusRoutes), startStationName, stopStationName);
+
+            if(realResult == null)
+            {
+                return NotFound();
+            } 
+            else
+            {
+                return Ok(realResult);
+            }
         }
 
         [HttpPost]
