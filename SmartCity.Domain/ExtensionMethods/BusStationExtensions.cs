@@ -52,8 +52,8 @@ namespace SmartCity.Domain.ExtensionMethods
                         {
                             return auxReturnList;
                         }
-                        List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> auxResult = ShortestPath(auxBusRoutes, auxStationEntity.Name, endStation, auxReturnList);
-                        if (auxResult != null && auxResult.Count < shortestRouteLength && auxResult.Count > 0)
+                        List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> auxResult = ShortestPath(auxBusRoutes, busStation.Name, endStation, auxReturnList);
+                        if (auxResult != null && auxResult.Count <= shortestRouteLength)
                         {
                             result = auxResult;
                             shortestRouteLength = auxResult.Count;
