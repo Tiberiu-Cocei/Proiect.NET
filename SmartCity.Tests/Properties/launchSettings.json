@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SmartCity.Tests": {
+      "commandName": "Project"
+    },
+    "IIS Express": {
+      "commandName": "Executable"
+    }
+  }
+}

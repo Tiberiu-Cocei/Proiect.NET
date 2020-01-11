@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "SmartCity.Business": {
+      "commandName": "Project"
+    },
+    "IIS Express": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\Iulia\\Documents\\IISExpress"
+    }
+  }
+}
