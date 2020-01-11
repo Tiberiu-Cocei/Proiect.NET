@@ -6,9 +6,21 @@ namespace SmartCity.Domain.ExtensionMethods
 {
     public static class BusStationExtensions
     {
+        private static int shortestRouteLength;
+
         public static List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> ShortestPath(List<BusRouteEntity> busRoutes, string startStation, string endStation, List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> returnList = null)
         {
-            int shortestRouteLength = Int32.MaxValue;
+            if(returnList == null)
+            {
+                shortestRouteLength = Int32.MaxValue;
+            }
+            else
+            {
+                if(returnList.Count > shortestRouteLength)
+                {
+                    return returnList;
+                }
+            }
             List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> result = null;
             foreach (BusRouteEntity busRoute in busRoutes)
             {
@@ -18,34 +30,34 @@ namespace SmartCity.Domain.ExtensionMethods
                 auxBusRoutes.Remove(busRoute);
                 foreach (BusStationEntity busStation in busRoute.BusStations)
                 {
-                    if(!startFlag && busStation.Name == startStation && returnList == null)
+                    if (!startFlag && busStation.Name == startStation)
                     {
                         startFlag = true;
                         auxStationEntity = busStation;
                     }
-                    else if(startFlag && returnList == null)
+                    else if (startFlag)
                     {
-                        List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> auxReturnList = new List<(string, string, CoordinatesEntity, string, CoordinatesEntity)>();
+                        List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> auxReturnList = null;
+                        if (returnList == null)
+                        {
+                            auxReturnList = new List<(string, string, CoordinatesEntity, string, CoordinatesEntity)>();
+                        }
+                        else
+                        {
+                            auxReturnList = new List<(string, string, CoordinatesEntity, string, CoordinatesEntity)>(returnList);
+                        }
                         (string, string, CoordinatesEntity, string, CoordinatesEntity) infoTuple = (busRoute.Name, auxStationEntity.Name, auxStationEntity.Coordinates, busStation.Name, busStation.Coordinates);
                         auxReturnList.Add(infoTuple);
-                        if(busStation.Name == endStation)
+                        if (busStation.Name == endStation)
                         {
                             return auxReturnList;
                         }
-                        List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> auxResult = ShortestPath(auxBusRoutes, null, endStation, auxReturnList);
-                        if(auxResult.Count < shortestRouteLength)
+                        List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> auxResult = ShortestPath(auxBusRoutes, auxStationEntity.Name, endStation, auxReturnList);
+                        if (auxResult != null && auxResult.Count < shortestRouteLength && auxResult.Count > 0)
                         {
                             result = auxResult;
                             shortestRouteLength = auxResult.Count;
                         }
-                    }
-                    else if(!startFlag && returnList != null)
-                    {
-
-                    }
-                    else if(startFlag && returnList != null)
-                    {
-
                     }
                 }
             }
