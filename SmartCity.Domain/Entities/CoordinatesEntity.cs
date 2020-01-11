@@ -13,6 +13,8 @@ namespace SmartCity.Domain.Entities
         [BsonRequired]
         public double Latitude;
 
+        public CoordinatesEntity() {}
+       
         public CoordinatesEntity(double Longitude, double Latitude)
         {
             this.Longitude = Longitude;
