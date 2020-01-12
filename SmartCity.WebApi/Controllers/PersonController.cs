@@ -48,7 +48,6 @@ namespace SmartCity.WebApi.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> GetPersonByCredentials([FromBody] UserModel user)
         {
-            //string hash = PersonExtensions.PasswordHashing(user.Password);
             var person = await _persons.GetByCredentials(user.Username, PersonExtensions.PasswordHashing(user.Password)).ConfigureAwait(false);
             if(person == null)
             {
@@ -77,7 +76,7 @@ namespace SmartCity.WebApi.Controllers
             {
                 return BadRequest();
             }
-
+            userEntity.Password = PersonExtensions.PasswordHashing(userEntity.Password);
             await _persons.AddAsync(userEntity).ConfigureAwait(false);
 
             var userResult = await _persons.GetByIdAsync(userEntity.Id).ConfigureAwait(false);
