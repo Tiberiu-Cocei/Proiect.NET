@@ -65,7 +65,7 @@ namespace SmartCity.WebApi.Controllers
             }
             // Fac cast la coordonatele din input
             CoordinatesEntity coordinatesEntity = new CoordinatesEntity(Convert.ToDouble(startcoordonates.Split('_')[0]), Convert.ToDouble(startcoordonates.Split('_')[1]));
-            CoordinatesEntity coordinatesEntity1 = new CoordinatesEntity(Convert.ToDouble(endcoordonates.Split('_')[0]), Convert.ToDouble(endcoordonates.Split('_')[1]));
+            CoordinatesEntity coordinatesEntity1 = new CoordinatesEntity (Convert.ToDouble(endcoordonates.Split('_')[0]), Convert.ToDouble(endcoordonates.Split('_')[1]));
 
             // Caut cea mai apropiata statie pentru punctul de start
             double longDiff = -1.0;

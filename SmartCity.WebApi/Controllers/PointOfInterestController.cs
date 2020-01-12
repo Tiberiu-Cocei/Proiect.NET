@@ -26,20 +26,6 @@ namespace SmartCity.WebApi.Controllers
             _mapper = mapper;
         }
 
-/*        [HttpGet("{id:guid}", Name = "GetPointOfInterestById")]
-        [ProducesResponseType(typeof(PointOfInterestModel), 200)]
-        public async Task<IActionResult> GetPointOfInterestById([FromRoute] Guid id)
-        {
-            var pointOfInterest = await _pointOfInterestService.GetByIdAsync(id).ConfigureAwait(false);
-
-            if (pointOfInterest == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(_mapper.Map<PointOfInterestModel>(pointOfInterest));
-        }*/
-
         [HttpGet(Name = "GetAllPointOfInterest")]
         [ProducesResponseType(typeof(PointOfInterestModel), 200)]
         public async Task<IActionResult> GetAll()
@@ -67,6 +53,15 @@ namespace SmartCity.WebApi.Controllers
             return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
         }
 
+        [HttpGet("{pointOfInterestId:guid}/{difference:int}", Name = "GetPointOfInterestById")]
+        [ProducesResponseType(typeof(PointOfInterestModel), 200)]
+        public async Task<IActionResult> GetPointOfInterestById([FromRoute] Guid pointOfInterestId, [FromRoute] int difference)
+        {
+            var pointOfInterests = await _pointOfInterestService.GetByPersonIdAsync(pointOfInterestId).ConfigureAwait(false);
+
+            return Ok(_mapper.Map<ICollection<PointOfInterestModel>>(pointOfInterests));
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPointOfInterest([FromBody] CreatePointOfInterestModel createPointOfInterestModel)
         {
@@ -76,7 +71,7 @@ namespace SmartCity.WebApi.Controllers
             
             var testCreate = await _pointOfInterestService.GetByIdAsync(pointOfInterestEntity.Id).ConfigureAwait(false);
 
-            return CreatedAtRoute("GetPointOfInterestById", new { id = testCreate.Id }, _mapper.Map<PointOfInterestEntity>(testCreate));
+            return CreatedAtRoute("GetPointOfInterestById", new { pointOfInterestId = testCreate.Id, difference = 1 }, _mapper.Map<PointOfInterestEntity>(testCreate));
         }
 
         [HttpPut("{id:guid}")]

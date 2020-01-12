@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartCity.Business.Person;
 using SmartCity.Domain.Entities;
+using SmartCity.Domain.ExtensionMethods;
 using SmartCity.WebApi.Models.Person;
 using SmartCity.WebApi.Models.User;
 using System;
@@ -47,7 +48,8 @@ namespace SmartCity.WebApi.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> GetPersonByCredentials([FromBody] UserModel user)
         {
-            var person = await _persons.GetByCredentials(user.Username, user.Password).ConfigureAwait(false);
+            //string hash = PersonExtensions.PasswordHashing(user.Password);
+            var person = await _persons.GetByCredentials(user.Username, PersonExtensions.PasswordHashing(user.Password)).ConfigureAwait(false);
             if(person == null)
             {
                 return NotFound();

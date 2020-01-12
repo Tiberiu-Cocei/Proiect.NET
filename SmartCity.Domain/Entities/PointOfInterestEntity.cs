@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 
 namespace SmartCity.Domain.Entities
@@ -20,6 +21,8 @@ namespace SmartCity.Domain.Entities
         public string Description { get; set; }
 
         [BsonElement("PersonId")]
+        [BsonRepresentation(BsonType.String)]
+        [BsonRequired]
         public Guid PersonId { get; set; }
 
         [BsonElement("CityName")]
