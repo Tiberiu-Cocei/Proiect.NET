@@ -119,7 +119,10 @@ namespace SmartCity.WebApi.Controllers
             List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> realResult = BusStationExtensions.ShortestPath(new List<BusRouteEntity>(res.BusRoutes), startStationName, stopStationName);
 
             List<BktModel> bktResult = new List<BktModel>();
-
+            if (realResult == null)
+            {
+                return NotFound();
+            }
             foreach ((string, string, CoordinatesEntity, string, CoordinatesEntity) iterator in realResult)
             {
                 BktModel bktModel = new BktModel
