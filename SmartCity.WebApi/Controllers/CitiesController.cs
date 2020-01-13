@@ -68,18 +68,19 @@ namespace SmartCity.WebApi.Controllers
             CoordinatesEntity coordinatesEntity1 = new CoordinatesEntity (Convert.ToDouble(endcoordonates.Split('_')[0]), Convert.ToDouble(endcoordonates.Split('_')[1]));
 
             // Caut cea mai apropiata statie pentru punctul de start
-            double longDiff = -1.0;
-            double latDiff = -1.0;
+            double longDiff = 300.0;
+            double latDiff = 300.0;
             BusStationEntity station = new BusStationEntity();
 
             // Caut cea mai apropiata statie pentru punctul de stop
-            double longDiff1 = -1.0;
-            double latDiff1 = -1.0;
+            double longDiff1 = 300.0;
+            double latDiff1 = 300.0;
             BusStationEntity stationEntity = new BusStationEntity();
             foreach(BusStationEntity bus in stationEntities)
             {
                 // Caut cea mai apropiata statie pentru punctul de start
-                if (Math.Abs(bus.Coordinates.Latitude - coordinatesEntity.Latitude) <= latDiff && Math.Abs(bus.Coordinates.Longitude - coordinatesEntity.Longitude) <= longDiff)
+                if (Math.Abs(bus.Coordinates.Latitude - coordinatesEntity.Latitude) <= latDiff && 
+                    Math.Abs(bus.Coordinates.Longitude - coordinatesEntity.Longitude) <= longDiff)
                 {
                     station = new BusStationEntity
                     {
@@ -95,7 +96,8 @@ namespace SmartCity.WebApi.Controllers
                 }
 
                 // Caut cea mai apropiata statie pentru punctul de stop
-                if (Math.Abs(bus.Coordinates.Latitude - coordinatesEntity1.Latitude) <= latDiff1 && Math.Abs(bus.Coordinates.Longitude - coordinatesEntity1.Longitude) <= longDiff1)
+                if (Math.Abs(bus.Coordinates.Latitude - coordinatesEntity1.Latitude) <= latDiff1 && 
+                    Math.Abs(bus.Coordinates.Longitude - coordinatesEntity1.Longitude) <= longDiff1)
                 {
                     stationEntity = new BusStationEntity
                     {
