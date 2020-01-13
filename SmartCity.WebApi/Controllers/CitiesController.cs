@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartCity.Business.City;
 using SmartCity.Domain.Entities;
 using SmartCity.Domain.ExtensionMethods;
+using SmartCity.WebApi.Models.BktModel;
 using SmartCity.WebApi.Models.City;
 using System;
 using System.Collections.Generic;
@@ -117,13 +118,28 @@ namespace SmartCity.WebApi.Controllers
 
             List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> realResult = BusStationExtensions.ShortestPath(new List<BusRouteEntity>(res.BusRoutes), startStationName, stopStationName);
 
+            List<BktModel> bktResult = new List<BktModel>();
+
+            foreach ((string, string, CoordinatesEntity, string, CoordinatesEntity) iterator in realResult)
+            {
+                BktModel bktModel = new BktModel
+                {
+                    RouteNumber = iterator.Item1,
+                    BoardingStation = iterator.Item2,
+                    BoardingCoodinates = iterator.Item3,
+                    ExitStation = iterator.Item4,
+                    ExitCoordinates = iterator.Item5
+                };
+                bktResult.Add(bktModel);
+            }
+
             if(realResult == null)
             {
                 return NotFound();
             } 
             else
             {
-                return Ok(realResult);
+                return Ok(bktResult);
             }
         }
 
