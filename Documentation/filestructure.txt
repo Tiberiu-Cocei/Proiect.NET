@@ -1,0 +1,78 @@
+Entitati: Coordinates, PointOfInterest, BusStation, BusRoute, Bus, Person, City
+	Punct de interes -> coordonate si un boolean care spune daca este pentru toti userii sau numai pentru unul, oras
+	Statie de autobuz -> coordonate si un set de trasee de autobuz, oras
+	Traseu de autobuz -> set de coordonate si nume pt fiecare din ele, oras 
+	Autobuz -> coordonate (pentru pozitia curenta) si un traseu; bool daca merge in gara
+	Persoana -> coordonate si un set de puncte de interes personal
+	Oras -> set de trasee de autobuz, set de puncte de interes, set de statii, set de autobuze
+
+Structura fisiere:
+
+SmartCity
+-Business
+--City
+---ICityService.cs
+---CityService.cs
+--Person
+---IPersonService.cs
+---PersonService.cs
+-DataAccess
+--Repositories
+---City
+----ICityRepository.cs
+----CityRepository.cs
+---Person
+----IPersonRepository.cs
+----PersonRepository.cs
+--DatabaseContext.cs
+--IBaseRepository.cs
+-Domain
+--Entities
+---Bus.cs
+---BusStation.cs
+---BusRoute.cs
+---City.cs
+---Coordinates.cs
+---Person.cs
+---PointOfInterest.cs
+-Tests
+--Business
+---CityServiceTests.cs
+---PersonServiceTests.cs
+--WebAPI
+---CityControllerTests.cs
+---PersonControllerTests.cs
+--BaseUnitTest.cs
+-WebAPI
+--Controllers
+---CitiesController.cs
+---PersonsController.cs
+--Models
+---Bus
+----BusModel.cs
+----CreateBusModel.cs
+----UpdateBusModel.cs
+---BusStation
+----BusStationModel.cs
+----CreateBusStationModel.cs
+----UpdateBusStationModel.cs
+---BusRoute
+----BusRouteModel.cs
+----CreateBusRouteModel.cs
+----UpdateBusRouteModel.cs
+---City
+----CityModel.cs
+----CreateCityModel.cs
+----UpdateCityModel.cs
+---Person
+----PersonModel.cs
+----CreatePersonModel.cs
+----UpdatePersonModel.cs
+---PointOfInterest
+----PointOfInterestModel.cs
+----CreatePointOfInterestModel.cs
+----UpdatePointOfInterestModel.cs
+--Program.cs
+--Startup.cs
+--appsettings.json
+	

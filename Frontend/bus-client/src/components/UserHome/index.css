@@ -1,0 +1,134 @@
+.user-home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-home-container {
+    background-image:  url('../../images/main1.jpg');
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-height: 92vh;
+}
+
+.user-header {
+    border-bottom: 3px solid #007BFF;
+    height: 8vh;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.user-header button {
+    margin-right: 20px;
+}
+
+.left-menu {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+}
+
+.points-container {
+    width: 60%;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+}
+
+.points {
+    height: 75%;
+}
+
+.point-li {
+    margin-bottom: 2px;
+    height: 32px;
+    text-align: left;
+    padding-left: 10px;
+    cursor: pointer;
+    background-color: white;
+    text-overflow: ellipsis;
+}
+
+.point-modal {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* .point-li:hover {
+    background-color: grey;
+} */
+
+.points-buttons {    
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 3px;
+    padding-top: 6px;
+}
+
+.footer {
+	height:7vh;
+	width: 100%;
+	bottom:0;
+    position: fixed;
+	font-size: 12px;
+	text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	color:white;
+	/* background: #6C757D; */
+    background: #007BFF;
+}
+
+.footer p {
+    margin-top: none;
+}
+
+.contact-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-us .contact-us-bar{
+    height: 3px;
+    background: #007BFF;
+    width: 170px;
+    margin-bottom: 10px;
+}
+
+.contact-us div {
+    display: inline-flex;
+}
+
+.contact-icon {
+    margin-left: 5px;
+    margin-right: 5px;
+    max-width: 50px;
+    max-height: 50px;
+}
+
+/* @media (max-width: 960px) and (min-width: 500px) {
+    .user-home-container {
+        flex-direction: column;
+    }
+} */

@@ -1,0 +1,59 @@
+1. Coordinates
+	a. double Longitude
+	b. double Latitude
+
+2. Person
+	a. Guid Id
+	b. string FirstName
+	c. string LastName
+	d. Coordinates Coordinates
+	e. List<PointOfInterest> PointsOfInterest
+	f. string Password //hashed password
+	g. DateTime CreationDate
+	h. DateTime ModifiedDate
+
+3. Bus
+	a. Guid Id
+	b. Coordinates Coordinates
+	c. BusRoute BusRoute
+	d. bool GoingToGarage
+	e. City City
+	f. DateTime CreationDate
+	g. DateTime ModifiedDate
+
+4. BusStation
+	a. Guid Id
+	b. string Name
+	c. Coordinates Coordinates
+	d. List<BusRoute> BusRoutes
+	e. City City
+	f. DateTime CreationDate
+	g. DateTime ModifiedDate
+
+5. BusRoute
+	a. Guid Id
+	b. string Name
+	c. List<BusStation> BusStations
+	d. City City
+	e. DateTime CreationDate
+	f. DateTime ModifiedDate
+
+6. PointOfInterest
+	a. Guid Id
+	b. Coordinates Coordinates
+	c. string Name
+	d. string Description
+	e. bool IsPrivate
+	f. City City
+	g. DateTime CreationDate
+	h. DateTime ModifiedDate
+
+7. City
+	a. Guid Id
+	b. string Name
+	c. List<Bus> Buses
+	d. List<BusStation> BusStations
+	e. List<BusRoute> BusRoutes
+	f. List<PointOfInterest> PointsOfInterest
+	g. DateTime CreationDate
+	h. DateTime ModifiedDate
