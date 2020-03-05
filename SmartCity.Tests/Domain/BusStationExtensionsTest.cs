@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SmartCity.Domain.ExtensionMethods;
 using SmartCity.Domain.Entities;
+using SmartCity.Domain.Factories;
 using System;
 using System.Collections.Generic;
 
@@ -14,70 +15,23 @@ namespace SmartCity.Tests
         {
             // Arrange
             List<BusRouteEntity> busRoutes = new List<BusRouteEntity>();
-            BusRouteEntity firstBusRouteEntity = new BusRouteEntity
+            BusStationFactory busStationFactory = new BusStationFactory();
+            CoordinatesFactory coordinatesFactory = new CoordinatesFactory();
+            BusRouteFactory busRouteFactory = new BusRouteFactory();
+            List<BusStationEntity> busStationList = new List<BusStationEntity>
             {
-                Id = new Guid(),
-                Name = "30",
-                BusStations = new List<BusStationEntity>
-                {
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_One",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 3.452,
-                           Latitude = 3.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Two",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 4.452,
-                           Latitude = 4.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Three",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 5.452,
-                           Latitude = 5.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   }
-                },
-                CreationDate = DateTime.Now,
-                ModifiedDate = DateTime.Now
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_One", coordinatesFactory.GetCoordinatesEntity(3.452, 3.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Two", coordinatesFactory.GetCoordinatesEntity(4.452, 4.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Three", coordinatesFactory.GetCoordinatesEntity(5.452, 5.567), null, DateTime.Now, DateTime.Now)
             };
+            BusRouteEntity firstBusRouteEntity = busRouteFactory.GetBusRouteEntity(Guid.Empty, "30", busStationList, DateTime.Now, DateTime.Now);
             busRoutes.Add(firstBusRouteEntity);
 
             // Act
             List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> result = BusStationExtensions.ShortestPath(busRoutes, "Station_One", "Station_Three");
             List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> realResult = new List<(string, string, CoordinatesEntity, string, CoordinatesEntity)>();
-            CoordinatesEntity firstStationStartCoordinates = new CoordinatesEntity
-            {
-                Longitude = 3.452,
-                Latitude = 3.567
-            };
-            CoordinatesEntity firstStationEndCoordinates = new CoordinatesEntity
-            {
-                Longitude = 5.452,
-                Latitude = 5.567
-            };
+            CoordinatesEntity firstStationStartCoordinates = coordinatesFactory.GetCoordinatesEntity(3.452, 3.567);
+            CoordinatesEntity firstStationEndCoordinates = coordinatesFactory.GetCoordinatesEntity(5.452, 5.567);
             (string, string, CoordinatesEntity, string, CoordinatesEntity) realResultTupleOne = ("30", "Station_One", firstStationStartCoordinates, "Station_Three", firstStationEndCoordinates);
             realResult.Add(realResultTupleOne);
 
@@ -102,153 +56,30 @@ namespace SmartCity.Tests
         {
             // Arrange
             List<BusRouteEntity> busRoutes = new List<BusRouteEntity>();
-            BusRouteEntity firstBusRouteEntity = new BusRouteEntity
+            BusStationFactory busStationFactory = new BusStationFactory();
+            CoordinatesFactory coordinatesFactory = new CoordinatesFactory();
+            BusRouteFactory busRouteFactory = new BusRouteFactory();
+            List<BusStationEntity> firstBusStationList = new List<BusStationEntity>
             {
-                Id = new Guid(),
-                Name = "30",
-                BusStations = new List<BusStationEntity>
-                {
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_One",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 3.452,
-                           Latitude = 3.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Two",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 4.452,
-                           Latitude = 4.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Three",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 5.452,
-                           Latitude = 5.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   }
-                },
-                CreationDate = DateTime.Now,
-                ModifiedDate = DateTime.Now
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_One", coordinatesFactory.GetCoordinatesEntity(3.452, 3.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Two", coordinatesFactory.GetCoordinatesEntity(4.452, 4.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Three", coordinatesFactory.GetCoordinatesEntity(5.452, 5.567), null, DateTime.Now, DateTime.Now)
             };
-            BusRouteEntity secondBusRouteEntity = new BusRouteEntity
+            BusRouteEntity firstBusRouteEntity = busRouteFactory.GetBusRouteEntity(Guid.Empty, "30", firstBusStationList, DateTime.Now, DateTime.Now);
+            List<BusStationEntity> secondBusStationList = new List<BusStationEntity>
             {
-                Id = new Guid(),
-                Name = "31",
-                BusStations = new List<BusStationEntity>
-                {
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Five",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 33.452,
-                           Latitude = 33.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Six",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 12.452,
-                           Latitude = 12.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Seven",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 13.452,
-                           Latitude = 13.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   }
-                },
-                CreationDate = DateTime.Now,
-                ModifiedDate = DateTime.Now
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Five", coordinatesFactory.GetCoordinatesEntity(33.452, 33.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Six", coordinatesFactory.GetCoordinatesEntity(12.452, 12.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Seven", coordinatesFactory.GetCoordinatesEntity(13.452, 13.567), null, DateTime.Now, DateTime.Now)
             };
-            BusRouteEntity thirdBusRouteEntity = new BusRouteEntity
+            BusRouteEntity secondBusRouteEntity = busRouteFactory.GetBusRouteEntity(Guid.Empty, "31", secondBusStationList, DateTime.Now, DateTime.Now);
+            List<BusStationEntity> thirdBusStationList = new List<BusStationEntity>
             {
-                Id = new Guid(),
-                Name = "32",
-                BusStations = new List<BusStationEntity>
-                {
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Four",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 15.452,
-                           Latitude = 15.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Three",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 5.452,
-                           Latitude = 5.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Five",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 33.452,
-                           Latitude = 33.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   }
-                },
-                CreationDate = DateTime.Now,
-                ModifiedDate = DateTime.Now
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Four", coordinatesFactory.GetCoordinatesEntity(15.452, 15.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Three", coordinatesFactory.GetCoordinatesEntity(5.452, 5.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Five", coordinatesFactory.GetCoordinatesEntity(33.452, 33.567), null, DateTime.Now, DateTime.Now)
             };
+            BusRouteEntity thirdBusRouteEntity = busRouteFactory.GetBusRouteEntity(Guid.Empty, "32", thirdBusStationList, DateTime.Now, DateTime.Now);
             busRoutes.Add(firstBusRouteEntity);
             busRoutes.Add(secondBusRouteEntity);
             busRoutes.Add(thirdBusRouteEntity);
@@ -256,36 +87,12 @@ namespace SmartCity.Tests
             // Act
             List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> result = BusStationExtensions.ShortestPath(busRoutes, "Station_One", "Station_Six");
             List<(string, string, CoordinatesEntity, string, CoordinatesEntity)> realResult = new List<(string, string, CoordinatesEntity, string, CoordinatesEntity)>();
-            CoordinatesEntity firstStationStartCoordinates = new CoordinatesEntity
-            {
-                Longitude = 3.452,
-                Latitude = 3.567
-            };
-            CoordinatesEntity firstStationEndCoordinates = new CoordinatesEntity
-            {
-                Longitude = 5.452,
-                Latitude = 5.567
-            };
-            CoordinatesEntity secondStationStartCoordinates = new CoordinatesEntity
-            {
-                Longitude = 5.452,
-                Latitude = 5.567
-            };
-            CoordinatesEntity secondStationEndCoordinates = new CoordinatesEntity
-            {
-                Longitude = 33.452,
-                Latitude = 33.567
-            };
-            CoordinatesEntity thirdStationStartCoordinates = new CoordinatesEntity
-            {
-                Longitude = 33.452,
-                Latitude = 33.567
-            };
-            CoordinatesEntity thirdStationEndCoordinates = new CoordinatesEntity
-            {
-                Longitude = 12.452,
-                Latitude = 12.567
-            };
+            CoordinatesEntity firstStationStartCoordinates = coordinatesFactory.GetCoordinatesEntity(3.452, 3.567);
+            CoordinatesEntity firstStationEndCoordinates = coordinatesFactory.GetCoordinatesEntity(5.452, 5.567);
+            CoordinatesEntity secondStationStartCoordinates = coordinatesFactory.GetCoordinatesEntity(5.452, 5.567);
+            CoordinatesEntity secondStationEndCoordinates = coordinatesFactory.GetCoordinatesEntity(33.452, 33.567);
+            CoordinatesEntity thirdStationStartCoordinates = coordinatesFactory.GetCoordinatesEntity(33.452, 33.567);
+            CoordinatesEntity thirdStationEndCoordinates = coordinatesFactory.GetCoordinatesEntity(12.452, 12.567);
             (string, string, CoordinatesEntity, string, CoordinatesEntity) realResultTupleOne = ("30", "Station_One", firstStationStartCoordinates, "Station_Three", firstStationEndCoordinates);
             (string, string, CoordinatesEntity, string, CoordinatesEntity) realResultTupleTwo = ("32", "Station_Three", secondStationStartCoordinates, "Station_Five", secondStationEndCoordinates);
             (string, string, CoordinatesEntity, string, CoordinatesEntity) realResultTupleThree = ("31", "Station_Five", thirdStationStartCoordinates, "Station_Six", thirdStationEndCoordinates);
@@ -314,55 +121,16 @@ namespace SmartCity.Tests
         {
             // Arrange
             List<BusRouteEntity> busRoutes = new List<BusRouteEntity>();
-            BusRouteEntity firstBusRouteEntity = new BusRouteEntity
+            BusStationFactory busStationFactory = new BusStationFactory();
+            CoordinatesFactory coordinatesFactory = new CoordinatesFactory();
+            BusRouteFactory busRouteFactory = new BusRouteFactory();
+            List<BusStationEntity> busStationList = new List<BusStationEntity>
             {
-                Id = new Guid(),
-                Name = "30",
-                BusStations = new List<BusStationEntity>
-                {
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_One",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 3.452,
-                           Latitude = 3.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Two",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 4.452,
-                           Latitude = 4.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   },
-                   new BusStationEntity
-                   {
-                       Id = new Guid(),
-                       Name = "Station_Three",
-                       Coordinates = new CoordinatesEntity
-                       {
-                           Longitude = 5.452,
-                           Latitude = 5.567
-                       },
-                       Buses = null,
-                       CreationDate = DateTime.Now,
-                       ModifiedDate = DateTime.Now
-                   }
-                },
-                CreationDate = DateTime.Now,
-                ModifiedDate = DateTime.Now
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_One", coordinatesFactory.GetCoordinatesEntity(3.452, 3.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Two", coordinatesFactory.GetCoordinatesEntity(4.452, 4.567), null, DateTime.Now, DateTime.Now),
+                busStationFactory.GetBusEntity(Guid.Empty, "Station_Three", coordinatesFactory.GetCoordinatesEntity(5.452, 5.567), null, DateTime.Now, DateTime.Now)
             };
+            BusRouteEntity firstBusRouteEntity = busRouteFactory.GetBusRouteEntity(Guid.Empty, "30", busStationList, DateTime.Now, DateTime.Now);
             busRoutes.Add(firstBusRouteEntity);
 
             // Act
