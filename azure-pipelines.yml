@@ -15,9 +15,16 @@ steps:
     packageType: 'sdk'
     version: 3.1.x
 - task: Npm@1
+  displayName: 'npm install'
   inputs:
     command: 'install'
     workingDir: 'Frontend\bus-client'
+- task: Npm@1
+  displayName: 'npm build and run'
+  inputs:
+    command: 'custom'
+    workingDir: 'Frontend\bus-client'
+    customCommand: 'build and run'
 - task: DotNetCoreCLI@2
   displayName: '.net restore'
   inputs:
@@ -47,6 +54,12 @@ steps:
   inputs:
     PathtoPublish: '$(Build.SourcesDirectory)\Backend\SmartCity.WebApi\bin\Debug\netcoreapp3.0'
     ArtifactName: 'Backend'
+    publishLocation: 'Container'
+- task: PublishBuildArtifacts@1
+  displayName: 'publish build artifact'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)'
+    ArtifactName: 'Frontend'
     publishLocation: 'Container'
 - task: DownloadBuildArtifacts@1
   displayName: 'download artifact'
