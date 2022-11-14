@@ -41,12 +41,12 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'publish build artifact'
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)/Backend/SmartCity.sln/bin/Debug/netcoreapp3.0'
+    PathtoPublish: '$(Build.SourcesDirectory)\Backend\SmartCity.WebApi\bin\Debug\netcoreapp3.0'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: DownloadBuildArtifacts@1
   inputs:
     buildType: 'current'
     downloadType: 'single'
-    artifactName: 'wwwroot'
+    artifactName: 'drop'
     downloadPath: '$(System.ArtifactsDirectory)'
