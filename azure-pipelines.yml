@@ -13,8 +13,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    useGlobalJson: true
-    workingDirectory: 'SmartCity.DataAccess.csproj'
+    version: 3.0.x
 - task: DotNetCoreCLI@2
   displayName: '.net restore'
   inputs:
