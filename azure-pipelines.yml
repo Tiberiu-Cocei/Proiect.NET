@@ -24,7 +24,7 @@ steps:
   inputs:
     command: 'custom'
     workingDir: 'Frontend\bus-client'
-    customCommand: 'build and run'
+    customCommand: 'run build'
 - task: DotNetCoreCLI@2
   displayName: '.net restore'
   inputs:
