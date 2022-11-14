@@ -18,20 +18,20 @@ steps:
   displayName: '.net restore'
   inputs:
     command: 'restore'
-    projects: 'SmartCity.sln'
+    projects: 'Backend/SmartCity.sln'
     feedsToUse: 'select'
     configuration: 'Release'
 - task: DotNetCoreCLI@2
   displayName: '.net build'
   inputs:
     command: 'build'
-    projects: 'SmartCity.sln'
+    projects: 'Backend/SmartCity.sln'
     configuration: 'Release'
 - task: DotNetCoreCLI@2
   displayName: '.net test'
   inputs:
     command: 'test'
-    projects: 'SmartCity.sln'
+    projects: 'Backend/SmartCity.sln'
     configuration: 'Release'
 - task: DotNetCoreCLI@2
   displayName: '.net publish'
