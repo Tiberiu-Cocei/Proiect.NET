@@ -58,7 +58,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'publish build artifact'
   inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)'
+    PathtoPublish: '$(Build.SourcesDirectory)\Frontend\bus-client'
     ArtifactName: 'Frontend'
     publishLocation: 'Container'
 - task: DownloadBuildArtifacts@1
