@@ -23,12 +23,12 @@ steps:
   displayName: 'npm install'
   inputs:
     command: 'install'
-    workingDir: Frontend\bus-client\package.json
+    workingDir: Frontend/bus-client
 - task: Npm@1
   displayName: 'npm build and run'
   inputs:
     command: 'custom'
-    workingDir: Frontend\bus-client\package.json
+    workingDir: Frontend/bus-client
     customCommand: 'run build'
 - task: DotNetCoreCLI@2
   displayName: '.net restore'
