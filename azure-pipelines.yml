@@ -14,6 +14,11 @@ steps:
   inputs:
     packageType: 'sdk'
     version: 3.1.x
+- task: NodeTool@0
+  displayName: Install node.js
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '6.x'
 - task: Npm@1
   displayName: 'npm install'
   inputs:
