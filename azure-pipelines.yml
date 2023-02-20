@@ -23,7 +23,7 @@ steps:
   displayName: 'npm build and run'
   inputs:
     command: 'custom'
-    workingDir: 'bus-client'
+    workingDir: 'Frontend\bus-client'
     customCommand: 'run build'
 - task: DotNetCoreCLI@2
   displayName: '.net restore'
