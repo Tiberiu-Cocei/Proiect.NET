@@ -71,12 +71,12 @@ stages:
         displayName: 'npm install'
         inputs:
           command: 'install'
-          workingDir: Frontend/bus-client
+          workingDir: bus-client
       - task: Npm@1
         displayName: 'npm build and run'
         inputs:
           command: 'custom'
-          workingDir: Frontend/bus-client
+          workingDir: bus-client
           customCommand: 'run build'
       - task: PublishBuildArtifacts@1
         displayName: 'publish build artifact'
