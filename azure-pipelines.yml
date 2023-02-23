@@ -1,0 +1,93 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+stages:
+- stage: Build
+  pool:
+    vmImage: windows-latest
+  jobs:
+  - job: backend_build
+    steps:
+
+
+      - task: UseDotNet@2
+        inputs:
+          packageType: 'sdk'
+          version:
+      - task: DotNetCoreCLI@2
+        displayName: '.net restore'
+        inputs:
+          command: 'restore'
+          projects: 'Backend/SmartCity.sln'
+          feedsToUse: 'select'
+          configuration: 'Release'
+      - task: DotNetCoreCLI@2
+        displayName: '.net build'
+        inputs:
+          command: 'build'
+          projects: 'Backend/SmartCity.sln'
+          configuration: 'Release'
+      - task: DotNetCoreCLI@2
+        displayName: '.net test'
+        inputs:
+          command: 'test'
+          projects: 'Backend/SmartCity.sln'
+          configuration: 'Release'
+      - task: DotNetCoreCLI@2
+        displayName: '.net publish'
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+      - task: PublishBuildArtifacts@1
+        displayName: 'publish build artifact'
+        inputs:
+          PathtoPublish: '$(Build.SourcesDirectory)\Backend\SmartCity.WebApi\bin\Debug\netcoreapp3.0'
+          ArtifactName: 'Backend'
+          publishLocation: 'Container'
+      - task: DownloadBuildArtifacts@1
+        displayName: 'download artifact'
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'Backend'
+          downloadPath: '$(System.ArtifactsDirectory)'
+- stage:
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+  - job: frontend_build
+    steps:
+      - task: NodeTool@0
+        displayName: Install node.js
+        inputs:
+          versionSource: 'spec'
+          versionSpec: '6.x'
+      - task: Npm@1
+        displayName: 'npm install'
+        inputs:
+          command: 'install'
+          workingDir: Frontend/bus-client/package.json
+      - task: Npm@1
+        displayName: 'npm build and run'
+        inputs:
+          command: 'custom'
+          workingDir: Frontend/bus-client/package.json
+          customCommand: 'run build'
+      - task: PublishBuildArtifacts@1
+        displayName: 'publish build artifact'
+        inputs:
+          PathtoPublish: '$(Build.SourcesDirectory)\Frontend\bus-client'
+          ArtifactName: 'Frontend'
+          publishLocation: 'Container'
+      - task: DownloadBuildArtifacts@1
+        displayName: 'download artifact'
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'Frontend'
+          downloadPath: '$(System.ArtifactsDirectory)'
