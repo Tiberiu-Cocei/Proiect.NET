@@ -6,77 +6,88 @@
 trigger:
 - master
 
-pool:
-  vmImage: windows-latest
+stages:
+- stage: Backend Build
+  pool:
+    vmImage: windows-latest
+  jobs:
+  - job: backend_build
+    steps:
 
-steps:
-- task: NodeTool@0
-  displayName: Install node.js
-  inputs:
-    versionSource: 'spec'
-    versionSpec: '6.x'
-- task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    command: 'install'
-    workingDir: Frontend/bus-client
-- task: Npm@1
-  displayName: 'npm build and run'
-  inputs:
-    command: 'custom'
-    workingDir: Frontend/bus-client
-    customCommand: 'run build'
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version:
-- task: DotNetCoreCLI@2
-  displayName: '.net restore'
-  inputs:
-    command: 'restore'
-    projects: 'Backend/SmartCity.sln'
-    feedsToUse: 'select'
-    configuration: 'Release'
-- task: DotNetCoreCLI@2
-  displayName: '.net build'
-  inputs:
-    command: 'build'
-    projects: 'Backend/SmartCity.sln'
-    configuration: 'Release'
-- task: DotNetCoreCLI@2
-  displayName: '.net test'
-  inputs:
-    command: 'test'
-    projects: 'Backend/SmartCity.sln'
-    configuration: 'Release'
-- task: DotNetCoreCLI@2
-  displayName: '.net publish'
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-- task: PublishBuildArtifacts@1
-  displayName: 'publish build artifact'
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)\Backend\SmartCity.WebApi\bin\Debug\netcoreapp3.0'
-    ArtifactName: 'Backend'
-    publishLocation: 'Container'
-- task: PublishBuildArtifacts@1
-  displayName: 'publish build artifact'
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)\Frontend\bus-client\build'
-    ArtifactName: 'Frontend'
-    publishLocation: 'Container'
-- task: DownloadBuildArtifacts@1
-  displayName: 'download artifact'
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'Backend'
-    downloadPath: '$(System.ArtifactsDirectory)'
-- task: DownloadBuildArtifacts@1
-  displayName: 'download artifact'
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'Frontend'
-    downloadPath: '$(System.ArtifactsDirectory)'
+
+      - task: UseDotNet@2
+        inputs:
+          packageType: 'sdk'
+          version:
+      - task: DotNetCoreCLI@2
+        displayName: '.net restore'
+        inputs:
+          command: 'restore'
+          projects: 'Backend/SmartCity.sln'
+          feedsToUse: 'select'
+          configuration: 'Release'
+      - task: DotNetCoreCLI@2
+        displayName: '.net build'
+        inputs:
+          command: 'build'
+          projects: 'Backend/SmartCity.sln'
+          configuration: 'Release'
+      - task: DotNetCoreCLI@2
+        displayName: '.net test'
+        inputs:
+          command: 'test'
+          projects: 'Backend/SmartCity.sln'
+          configuration: 'Release'
+      - task: DotNetCoreCLI@2
+        displayName: '.net publish'
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+      - task: PublishBuildArtifacts@1
+        displayName: 'publish build artifact'
+        inputs:
+          PathtoPublish: '$(Build.SourcesDirectory)\Backend\SmartCity.WebApi\bin\Debug\netcoreapp3.0'
+          ArtifactName: 'Backend'
+          publishLocation: 'Container'
+      - task: DownloadBuildArtifacts@1
+        displayName: 'download artifact'
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'Backend'
+          downloadPath: '$(System.ArtifactsDirectory)'
+- stage: Frontend Build
+  pool:
+    vmImage: ubuntu-latest
+  jobs:
+  - job: frontend_build
+    steps:
+      - task: NodeTool@0
+        displayName: Install node.js
+        inputs:
+          versionSource: 'spec'
+          versionSpec: '6.x'
+      - task: Npm@1
+        displayName: 'npm install'
+        inputs:
+          command: 'install'
+          workingDir: Frontend/bus-client
+      - task: Npm@1
+        displayName: 'npm build and run'
+        inputs:
+          command: 'custom'
+          workingDir: Frontend/bus-client
+          customCommand: 'run build'
+      - task: PublishBuildArtifacts@1
+        displayName: 'publish build artifact'
+        inputs:
+          PathtoPublish: '$(Build.SourcesDirectory)\Frontend\bus-client'
+          ArtifactName: 'Frontend'
+          publishLocation: 'Container'
+      - task: DownloadBuildArtifacts@1
+        displayName: 'download artifact'
+        inputs:
+          buildType: 'current'
+          downloadType: 'single'
+          artifactName: 'Frontend'
+          downloadPath: '$(System.ArtifactsDirectory)'
