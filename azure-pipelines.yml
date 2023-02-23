@@ -7,7 +7,7 @@ trigger:
 - master
 
 stages:
-- stage: Backend Build
+- stage: Build
   pool:
     vmImage: windows-latest
   jobs:
